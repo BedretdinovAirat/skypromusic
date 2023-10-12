@@ -5,6 +5,14 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "StratosSkyeng";
+  src: url("../fonts/stratosskyengweb-regular.woff2") format("woff2"),
+    url("../fonts/stratosskyengweb-regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
 *:before,
 *:after {
   -webkit-box-sizing: border-box;
@@ -25,15 +33,6 @@ button,
 
 ul li {
   list-style: none;
-}
-
-@font-face {
-  font-family: "StratosSkyeng";
-  src: local("StratosSkyeng"), local("StratosSkyeng"),
-    url("../fonts/StratosSkyeng.woff2") format("woff2"),
-    url("../fonts/StratosSkyeng.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
 }
 
 html,
@@ -122,7 +121,7 @@ body {
   max-width: 418px;
   padding: 20px 90px 20px 78px;
 }
-
+/* 2 компонент низ */
 .nav__logo {
   width: 113.33px;
   height: 43px;
@@ -180,7 +179,7 @@ body {
   font-size: 16px;
   line-height: 24px;
 }
-
+/* 3 компонент низ */
 .centerblock__search {
   width: 100%;
   border-bottom: 1px solid #4e4e4e;
@@ -229,7 +228,7 @@ body {
   -ms-flex-direction: column;
   flex-direction: column;
 }
-
+/* 4 компонент */
 .search__svg {
   width: 17px;
   height: 17px;
@@ -287,7 +286,7 @@ body {
   font-size: 16px;
   line-height: 24px;
 }
-
+/* 5 компонент */
 .filter__title {
   font-style: normal;
   font-weight: 400;
@@ -309,7 +308,7 @@ body {
 .filter__button:not(:last-child) {
   margin-right: 10px;
 }
-
+/* 6 компонент */
 .content__title {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -354,7 +353,6 @@ body {
   fill: transparent;
   stroke: #696969;
 }
-
 .col01 {
   width: 447px;
 }
@@ -371,7 +369,7 @@ body {
   width: 60px;
   text-align: end;
 }
-
+/* 7 компонент низ */
 .playlist__item {
   width: 100%;
   display: block;
@@ -512,7 +510,7 @@ body {
   justify-content: flex-end;
   padding: 12px 0 15px 0;
 }
-
+/* 8 компонент низ */
 .sidebar__personal-name {
   font-style: normal;
   font-weight: 400;
@@ -577,6 +575,7 @@ body {
   height: auto;
 }
 
+/* 9 компонент низ */
 .bar {
   position: absolute;
   bottom: 0;
@@ -641,7 +640,7 @@ body {
   align-items: center;
   padding: 0 92px 0 0;
 }
-
+/* 10 компонент низ */
 .player__controls {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -734,7 +733,7 @@ body {
   -ms-flex-direction: row;
   flex-direction: row;
 }
-
+/* 11 компонент низ */
 .track-play__contain {
   width: auto;
   display: -ms-grid;
@@ -857,7 +856,7 @@ body {
   -ms-flex-pack: end;
   justify-content: end;
 }
-
+/* 12 компонент низ */
 .volume__image {
   width: 13px;
   height: 18px;
