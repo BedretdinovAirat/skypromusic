@@ -1,5 +1,8 @@
 import "./App.css";
 import "./style.css";
+import "./Header.css";
+import "./Center.css";
+import "./Footer.css";
 import Navigation from "./components/Navigation";
 import CenterBlock from "./components/CenterBlock";
 import MainSideBar from "./components/MainSideBar";
