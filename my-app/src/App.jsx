@@ -8,11 +8,9 @@ import CenterBlock from "./components/CenterBlock";
 import MainSideBar from "./components/MainSideBar";
 import Bar from "./components/Bar";
 import Footer from "./components/Footer";
+import React from "react";
 function App() {
   return (
-    // <div classNameName="App">
-    //   "Здесь скоро будет Skypro.Music"
-    // </div>
     <div className="wrapper">
       <div className="container">
         <main className="main">
@@ -28,3 +26,4 @@ function App() {
 }
 
 export default App;
+

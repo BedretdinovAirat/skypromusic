@@ -43,31 +43,72 @@ body {
   color: #ffffff;
 }
 /* выпадающий список */
-.drop__down-list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 12px;
-  background: #313131;
-  /* gap: 28px; */
+.menu-filter {
+  position: absolute;
+  top: calc(100% - -10px);
+  left: 35px;
+  width: 250px;
+  padding: 25px;
+  background-color: #272727;
+  border: 1px solid #d9b6ff;
+  border-radius: 10px;
+  height: 150px;
+  overflow-y: scroll;
 }
-.drop__down-text {
-  color: #fff;
-  font-variant-numeric: lining-nums proportional-nums;
-  font-family: StratosSkyeng;
-  font-size: 20px;
+/* скролл! */
+.menu-filter::-webkit-scrollbar {
+  width: 8px;
+}
+.menu-filter::-webkit-scrollbar-track {
+  background: #272727;
+}
+.menu-filter::-webkit-scrollbar-thumb {
+  background-color: black; /* цвет бегунка */
+  border-radius: 10px; /* округлось бегунка */
+  border: 1px solid black;
+}
+._btn-text_active {
+  cursor: pointer;
+  border-color: #d9b6ff;
+  color: #d9b6ff;
+  cursor: pointer;
+}
+
+.menu-filter::before,
+.menu-filter::after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 25px;
+  border: 10px solid transparent;
+}
+
+.menu-filter::before {
+  top: -20px;
+  border-bottom: 10px solid #d9b6ff;
+}
+
+.menu-filter::after {
+  top: -19px;
+  border-bottom: 10px solid #272727;
+}
+.menu-list {
+  height: 150px;
+  overflow-y: scroll;
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 5px;
   font-style: normal;
   font-weight: 400;
+  font-size: 16px;
   line-height: 24px;
-  transform: translateX(-500%);
-  transition: all 0.2s;
+  color: #ffffff;
 }
-.drop__down-list.active {
-  transform: translateX(0);
-}
-.drop__down-text:hover {
-  /* cursor: pointer; */
-  color: #b672ff;
-  text-decoration-line: underline;
+
+.menu-item:hover {
+  color: #d9b6ff;
 }

@@ -1,95 +1,12 @@
 import "../style.css";
-import BlockSearch from "./BlockSearch";
-import CenterBlockFilter from "./CenterBlockFilter";
-import Track from "./Track";
-function CenterBlock({ isLoading }) {
-  const tracks = [
-    {
-      id: 1,
-      name: "Guilty",
-      author: "Nero",
-      album: "Welcome Reality",
-      isLike: false,
-      time: "4:44",
-    },
-    {
-      id: 2,
-      name: "Elektro",
-      author: "Dynoro, Outwork, Mr. Gee",
-      album: "Elektro",
-      isLike: true,
-      time: "2:22",
-    },
-    {
-      id: 3,
-      name: `I'm Fire`,
-      author: "Ali Bakgor",
-      album: "I’m Fire",
-      isLike: false,
-      time: "2:22",
-    },
-    {
-      id: 4,
-      name: "Non Stop",
-      author: "Стоункат, Psychopath",
-      album: "Non Stop",
-      isLike: false,
-      time: "4:12",
-    },
-    {
-      id: 5,
-      name: "Run Run",
-      author: "Jaded, Will Clarke, AR/CO",
-      album: "Run Run",
-      isLike: false,
-      time: "2:54",
-    },
-    {
-      id: 6,
-      name: "Eyes on Fire",
-      author: "Blue Foundation, Zeds Dead ",
-      album: "Eyes on Fire",
-      isLike: false,
-      time: "5:20",
-    },
-    {
-      id: 7,
-      name: "Mucho Bien",
-      author: "HYBIT, Mr. Black, Offer Nissim, Hi Profile",
-      album: "Mucho Bien",
-      isLike: false,
-      time: "3:41",
-    },
-    {
-      id: 8,
-      name: "Knives n Cherries",
-      author: "minthaze",
-      album: "Captivating",
-      isLike: false,
-      time: "1:48",
-    },
-    {
-      id: 9,
-      name: "How Deep Is Your Love",
-      author: "Calvin Harris, Disciples",
-      album: "How Deep Is Your Love",
-      isLike: false,
-      time: "3:32",
-    },
-    {
-      id: 10,
-      name: "Morena",
-      author: "Tom Boxer",
-      album: "Soundz Made in Romania",
-      isLike: false,
-      time: "4:44",
-    },
-  ];
+import SkeletonBlockSearch from "./SkeletonBlockSearch";
+import SkeletonCenterBlockFilter from "./SkeletonCenterBlockFilter";
+function SkeletonCenterBlock() {
   return (
     <div className="main__centerblock centerblock">
-      <BlockSearch />
+      <SkeletonBlockSearch />
       <h2 className="centerblock__h2">Треки</h2>
-      <CenterBlockFilter />
+      <SkeletonCenterBlockFilter />
       {/* 3 компонент низ */}
       <div className="centerblock__content">
         <div className="content__title playlist-title">
@@ -98,21 +15,18 @@ function CenterBlock({ isLoading }) {
           <div className="playlist-title__col col03">АЛЬБОМ</div>
           <div className="playlist-title__col col04">
             <svg className="playlist-title__svg" alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
+              <use xlinkHref="img/icon/#icon-watch"></use>
             </svg>
           </div>
         </div>
         {/* 4 компонент низ */}
         <div className="content__playlist playlist">
-          {tracks.map((track) => (
-            <Track track={track} />
-          ))}
-          {/* <div className="playlist__item">
+          <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -133,18 +47,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">4:44</span>
               </div>
             </div>
           </div>
+          {/* 5 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -165,18 +80,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">2:22</span>
               </div>
             </div>
           </div>
+          {/* 6 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -197,18 +113,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">2:22</span>
               </div>
             </div>
           </div>
+          {/* 7 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -230,18 +147,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">4:12</span>
               </div>
             </div>
           </div>
+          {/* 8 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -263,18 +181,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">2:54</span>
               </div>
             </div>
           </div>
+          {/* 9 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -296,18 +215,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">5:20</span>
               </div>
             </div>
           </div>
+          {/* 10 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -331,18 +251,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">3:41</span>
               </div>
             </div>
           </div>
+          {/* 11 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -364,18 +285,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">1:48</span>
               </div>
             </div>
           </div>
+          {/* 12 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -397,18 +319,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">1:48</span>
               </div>
             </div>
           </div>
+          {/* 13 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -430,18 +353,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">1:48</span>
               </div>
             </div>
           </div>
+          {/* 14 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -463,18 +387,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">1:48</span>
               </div>
             </div>
           </div>
+          {/* 15 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -496,18 +421,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">1:48</span>
               </div>
             </div>
           </div>
+          {/* 16 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -529,18 +455,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">1:48</span>
               </div>
             </div>
           </div>
+          {/* 17 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -562,18 +489,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">1:48</span>
               </div>
             </div>
           </div>
+          {/* 18 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -595,18 +523,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">3:32</span>
               </div>
             </div>
           </div>
+          {/* 19 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -627,18 +556,19 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text">3:36</span>
               </div>
             </div>
           </div>
+          {/* 20 компонент низ */}
           <div className="playlist__item">
             <div className="playlist__track track">
               <div className="track__title">
                 <div className="track__title-image">
                   <svg className="track__title-svg" alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="img/icon/track_skeleton.png#icon-note"></use>
                   </svg>
                 </div>
                 <div className="track__title-text">
@@ -655,15 +585,15 @@ function CenterBlock({ isLoading }) {
               </div>
               <div className="track__time">
                 <svg className="track__time-svg" alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  <use xlinkHref="img/icon/track_skeleton.png#icon-like"></use>
                 </svg>
                 <span className="track__time-text"></span>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
   );
 }
-export default CenterBlock;
+export default SkeletonCenterBlock;
