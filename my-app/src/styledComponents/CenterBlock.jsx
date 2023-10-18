@@ -2,75 +2,7 @@ import "../style.css";
 import BlockSearch from "./BlockSearch";
 import CenterBlockFilter from "./CenterBlockFilter";
 import Track from "./Track";
-import styled from "styled-components";
-const StyledMainCenterblock = styled.div`
-  width: auto;
-  -webkit-box-flex: 3;
-  -ms-flex-positive: 3;
-  flex-grow: 3;
-  padding: 20px 40px 20px 111px;
-`;
-const StyledCenterBlockH2 = styled.h2`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 64px;
-  line-height: 72px;
-  letter-spacing: -0.8px;
-  margin-bottom: 45px;
-`;
-const StyledCenterblockContent = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-`;
-const StyledContentTitle = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  margin-bottom: 24px;
-`;
-const StyledPlaylistTitleCol = styled.div`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 2px;
-  color: #696969;
-  text-transform: uppercase;
-`;
-const StyledPlaylistTitleSVG = styled.svg`
-  width: 12px;
-  height: 12px;
-  fill: transparent;
-  stroke: #696969;
-`;
-
-const StyledContentPlaylist = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  overflow-y: auto;
-`;
-// const styled = styled.div``;
-function CenterBlock() {
+function CenterBlock({ isLoading }) {
   const tracks = [
     {
       id: 1,
@@ -154,22 +86,22 @@ function CenterBlock() {
     },
   ];
   return (
-    <StyledMainCenterblock>
+    <div className="main__centerblock centerblock">
       <BlockSearch />
-      <StyledCenterBlockH2>Треки</StyledCenterBlockH2>
+      <h2 className="centerblock__h2">Треки</h2>
       <CenterBlockFilter />
-      <StyledCenterblockContent>
-        <StyledContentTitle>
-          <StyledPlaylistTitleCol>Трек</StyledPlaylistTitleCol>
-          <StyledPlaylistTitleCol>ИСПОЛНИТЕЛЬ</StyledPlaylistTitleCol>
-          <StyledPlaylistTitleCol>АЛЬБОМ</StyledPlaylistTitleCol>
-          <StyledPlaylistTitleCol>
-            <StyledPlaylistTitleSVG alt="time">
+      <div className="centerblock__content">
+        <div className="content__title playlist-title">
+          <div className="playlist-title__col col01">Трек</div>
+          <div className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>
+          <div className="playlist-title__col col03">АЛЬБОМ</div>
+          <div className="playlist-title__col col04">
+            <svg className="playlist-title__svg" alt="time">
               <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
-            </StyledPlaylistTitleSVG>
-          </StyledPlaylistTitleCol>
-        </StyledContentTitle>
-        <StyledContentPlaylist>
+            </svg>
+          </div>
+        </div>
+        <div className="content__playlist playlist">
           {tracks.map((track) => (
             <Track track={track} />
           ))}
@@ -727,9 +659,9 @@ function CenterBlock() {
               </div>
             </div>
           </div> */}
-        </StyledContentPlaylist>
-      </StyledCenterblockContent>
-    </StyledMainCenterblock>
+        </div>
+      </div>
+    </div>
   );
 }
 export default CenterBlock;

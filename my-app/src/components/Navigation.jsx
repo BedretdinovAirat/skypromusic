@@ -1,6 +1,60 @@
 import BurgerMenu from "../burgerMenu/BurgerMenu";
 import "../style.css";
 import React from "react";
+import styled from "styled-components";
+const StyledMainNav = styled.nav`
+  width: 244px;
+  background-color: #181818;
+  padding: 20px 0 20px 36px;
+`;
+const StyledNavLogo = styled.div`
+  width: 113.33px;
+  height: 43px;
+  padding: 13px 0 13px 0;
+  background-color: transparent;
+  margin-bottom: 20px;
+`;
+const StyledLogoImage = styled.img`
+  width: 113.33px;
+  height: 17px;
+  color: #181818;
+`;
+const StyledNavBurger = styled.div`
+  *::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 30px;
+  }
+  *::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 30px;
+  }
+  cursor: pointer;
+  width: 20px;
+  height: 36px;
+  padding: 13px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+`;
+const StyledBurgerLine = styled.span`
+  display: inline-block;
+  width: 100%;
+  height: 1px;
+  background-color: #d3d3d3;
+`;
+// const styled = styled.div``;
+// здесь работа со стилями закончена, кроме тернарных операторов
 function Navigation() {
   const [menuActive, setMenuActive] = React.useState(false);
   const items = [
@@ -9,39 +63,17 @@ function Navigation() {
     { value: "Войти", href: "!" },
   ];
   return (
-    <nav className="main__nav nav">
-      <div className="nav__logo logo">
-        <img className="logo__image" src="img/logo.png" alt="logo" />
-      </div>
-      <div
-        className="nav__burger burger"
-        onClick={() => setMenuActive(!menuActive)}
-      >
-        <span className="burger__line"></span>
-        <span className="burger__line"></span>
-        <span className="burger__line"></span>
-      </div>
+    <StyledMainNav>
+      <StyledNavLogo>
+        <StyledLogoImage src="img/logo.png" alt="logo" />
+      </StyledNavLogo>
+      <StyledNavBurger onClick={() => setMenuActive(!menuActive)}>
+        <StyledBurgerLine></StyledBurgerLine>
+        <StyledBurgerLine></StyledBurgerLine>
+        <StyledBurgerLine></StyledBurgerLine>
+      </StyledNavBurger>
       <BurgerMenu active={menuActive} setActive={setMenuActive} items={items} />
-      {/* <div className="nav__menu menu">
-        <ul className="menu__list">
-          <li className="menu__item">
-            <a href="!#" className="menu__link">
-              Главное
-            </a>
-          </li>
-          <li className="menu__item">
-            <a href="!#" className="menu__link">
-              Мой плейлист
-            </a>
-          </li>
-          <li className="menu__item">
-            <a href="../signin.html" className="menu__link">
-              Войти
-            </a>
-          </li>
-        </ul>
-      </div> */}
-    </nav>
+    </StyledMainNav>
   );
 }
 export default Navigation;

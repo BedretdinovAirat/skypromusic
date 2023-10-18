@@ -1,14 +1,57 @@
 import "../style.css";
 import React from "react";
+import styled from "styled-components";
+const StyledCenterblockFilter = styled.div`
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 51px;
+`;
+const StyledFilterTitle = styled.div`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  margin-right: 15px;
+`;
+const StyledFilterButton = styled.div`
+  color: white;
+  &:hover {
+    color: #d9b6ff;
+  }
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid #ffffff;
+  border-radius: 60px;
+  padding: 6px 20px;
+  position: relative;
+`;
+const StyledMenuItem = styled.li`
+  &:hover {
+    color: #d9b6ff;
+  }
+  color: white;
+  padding: 5px 0;
+  margin-bottom: 16px;
+`;
 function CenterBlockFilter() {
   const [openAuthor, setOpenAuthor] = React.useState(false);
   const [openYear, setOpenYear] = React.useState(false);
   const [openGenre, setOpenGenre] = React.useState(false);
   return (
-    <div className="centerblock__filter filter">
-      <div className="filter__title">Искать по:</div>
-      <div
-        className="filter__button button-author _btn-text "
+    <StyledCenterblockFilter>
+      <StyledFilterTitle>Искать по:</StyledFilterTitle>
+      <StyledFilterButton
+        className="button-author _btn-text "
         onClick={() => {
           setOpenAuthor(!openAuthor);
           setOpenYear(false);
@@ -16,25 +59,25 @@ function CenterBlockFilter() {
         }}
       >
         исполнителю
-        <nav >
+        <nav>
           <ul className={openAuthor ? "menu-filter active" : "nav__menu menu"}>
-            <li className="menu-item"> Nero</li>
-            <li className="menu-item"> Dynoro, Outwork, Mr. Gee</li>
-            <li className="menu-item"> Ali Bakgor</li>
-            <li className="menu-item"> Стоункат, Psychopath</li>
-            <li className="menu-item"> Jaded, Will Clarke, AR/CO</li>
-            <li className="menu-item"> Blue Foundation, Zeds Dead</li>
-            <li className="menu-item">
+            <StyledMenuItem> Nero</StyledMenuItem>
+            <StyledMenuItem> Dynoro, Outwork, Mr. Gee</StyledMenuItem>
+            <StyledMenuItem> Ali Bakgor</StyledMenuItem>
+            <StyledMenuItem> Стоункат, Psychopath</StyledMenuItem>
+            <StyledMenuItem> Jaded, Will Clarke, AR/CO</StyledMenuItem>
+            <StyledMenuItem> Blue Foundation, Zeds Dead</StyledMenuItem>
+            <StyledMenuItem>
               HYBIT, Mr. Black, Offer Nissim, Hi Profile
-            </li>
-            <li className="menu-item"> minthaze</li>
-            <li className="menu-item"> Calvin Harris, Disciples</li>
-            <li className="menu-item"> Tom Boxer</li>
+            </StyledMenuItem>
+            <StyledMenuItem> minthaze</StyledMenuItem>
+            <StyledMenuItem> Calvin Harris, Disciples</StyledMenuItem>
+            <StyledMenuItem> Tom Boxer</StyledMenuItem>
           </ul>
         </nav>
-      </div>
-      <div
-        className="filter__button button-year _btn-text "
+      </StyledFilterButton>
+      <StyledFilterButton
+        className="button-year _btn-text "
         onClick={() => {
           setOpenYear(!openYear);
           setOpenAuthor(false);
@@ -42,23 +85,16 @@ function CenterBlockFilter() {
         }}
       >
         году выпуска
-        <nav >
+        <nav>
           <ul className={openYear ? "menu-filter active" : "nav__menu menu"}>
-            <li className="menu-item"> По умолчанию</li>
-            <li className="menu-item"> Сначала новые</li>
-            <li className="menu-item"> Сначала старые</li>
-            {/* <li>4</li>
-          <li>5</li>
-          <li>6</li>
-          <li>7</li>
-          <li>8</li>
-          <li>9</li>
-          <li>10</li> */}
+            <StyledMenuItem> По умолчанию</StyledMenuItem>
+            <StyledMenuItem> Сначала новые</StyledMenuItem>
+            <StyledMenuItem> Сначала старые</StyledMenuItem>
           </ul>
         </nav>
-      </div>
-      <div
-        className="filter__button button-genre _btn-text "
+      </StyledFilterButton>
+      <StyledFilterButton
+        className="button-genre _btn-text "
         onClick={() => {
           setOpenGenre(!openGenre);
           setOpenAuthor(false);
@@ -66,25 +102,17 @@ function CenterBlockFilter() {
         }}
       >
         жанру
-        <nav >
+        <nav>
           <ul className={openGenre ? "menu-filter active" : "nav__menu menu"}>
-            <li className="menu-item"> Рок</li>
-            <li className="menu-item"> Хип-хоп</li>
-            <li className="menu-item"> Поп-музыка</li>
-            <li className="menu-item"> Техно</li>
-            <li className="menu-item"> Инди</li>
-            {/* <li>6</li>
-          <li>7</li>
-          <li>8</li>
-          <li>9</li>
-          <li>10</li> */}
+            <StyledMenuItem> Рок</StyledMenuItem>
+            <StyledMenuItem> Хип-хоп</StyledMenuItem>
+            <StyledMenuItem> Поп-музыка</StyledMenuItem>
+            <StyledMenuItem> Техно</StyledMenuItem>
+            <StyledMenuItem> Инди</StyledMenuItem>
           </ul>
         </nav>
-      </div>
-    </div>
+      </StyledFilterButton>
+    </StyledCenterblockFilter>
   );
 }
 export default CenterBlockFilter;
-// menu filter
-// menu list
-// menu item
