@@ -1,118 +1,84 @@
 import "../style.css";
 import React from "react";
-import styled from "styled-components";
-const StyledCenterblockFilter = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-bottom: 51px;
-`;
-const StyledFilterTitle = styled.div`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  margin-right: 15px;
-`;
-const StyledFilterButton = styled.div`
-  color: white;
-  &:hover {
-    color: #d9b6ff;
-  }
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  border: 1px solid #ffffff;
-  border-radius: 60px;
-  padding: 6px 20px;
-  position: relative;
-`;
-const StyledMenuItem = styled.li`
-  &:hover {
-    color: #d9b6ff;
-  }
-  color: white;
-  padding: 5px 0;
-  margin-bottom: 16px;
-`;
+import * as S from "../styledComponents/StyledCenterBlockFilter";
+
 function CenterBlockFilter() {
   const [openAuthor, setOpenAuthor] = React.useState(false);
   const [openYear, setOpenYear] = React.useState(false);
   const [openGenre, setOpenGenre] = React.useState(false);
+  const handleClickAuthor = () => {
+    setOpenAuthor(!openAuthor);
+    setOpenYear(false);
+    setOpenGenre(false);
+  };
+  const handleClickYear = () => {
+    setOpenYear(!openYear);
+    setOpenAuthor(false);
+    setOpenGenre(false);
+  };
+  const handleClickGenre = () => {
+    setOpenGenre(!openGenre);
+    setOpenAuthor(false);
+    setOpenYear(false);
+  };
   return (
-    <StyledCenterblockFilter>
-      <StyledFilterTitle>Искать по:</StyledFilterTitle>
-      <StyledFilterButton
-        className="button-author _btn-text "
-        onClick={() => {
-          setOpenAuthor(!openAuthor);
-          setOpenYear(false);
-          setOpenGenre(false);
-        }}
-      >
-        исполнителю
-        <nav>
-          <ul className={openAuthor ? "menu-filter active" : "nav__menu menu"}>
-            <StyledMenuItem> Nero</StyledMenuItem>
-            <StyledMenuItem> Dynoro, Outwork, Mr. Gee</StyledMenuItem>
-            <StyledMenuItem> Ali Bakgor</StyledMenuItem>
-            <StyledMenuItem> Стоункат, Psychopath</StyledMenuItem>
-            <StyledMenuItem> Jaded, Will Clarke, AR/CO</StyledMenuItem>
-            <StyledMenuItem> Blue Foundation, Zeds Dead</StyledMenuItem>
-            <StyledMenuItem>
-              HYBIT, Mr. Black, Offer Nissim, Hi Profile
-            </StyledMenuItem>
-            <StyledMenuItem> minthaze</StyledMenuItem>
-            <StyledMenuItem> Calvin Harris, Disciples</StyledMenuItem>
-            <StyledMenuItem> Tom Boxer</StyledMenuItem>
-          </ul>
-        </nav>
-      </StyledFilterButton>
-      <StyledFilterButton
-        className="button-year _btn-text "
-        onClick={() => {
-          setOpenYear(!openYear);
-          setOpenAuthor(false);
-          setOpenGenre(false);
-        }}
-      >
-        году выпуска
-        <nav>
-          <ul className={openYear ? "menu-filter active" : "nav__menu menu"}>
-            <StyledMenuItem> По умолчанию</StyledMenuItem>
-            <StyledMenuItem> Сначала новые</StyledMenuItem>
-            <StyledMenuItem> Сначала старые</StyledMenuItem>
-          </ul>
-        </nav>
-      </StyledFilterButton>
-      <StyledFilterButton
-        className="button-genre _btn-text "
-        onClick={() => {
-          setOpenGenre(!openGenre);
-          setOpenAuthor(false);
-          setOpenYear(false);
-        }}
-      >
-        жанру
-        <nav>
-          <ul className={openGenre ? "menu-filter active" : "nav__menu menu"}>
-            <StyledMenuItem> Рок</StyledMenuItem>
-            <StyledMenuItem> Хип-хоп</StyledMenuItem>
-            <StyledMenuItem> Поп-музыка</StyledMenuItem>
-            <StyledMenuItem> Техно</StyledMenuItem>
-            <StyledMenuItem> Инди</StyledMenuItem>
-          </ul>
-        </nav>
-      </StyledFilterButton>
-    </StyledCenterblockFilter>
+    <S.CenterblockFilter>
+      <S.FilterTitle>Искать по:</S.FilterTitle>
+      {openAuthor ? (
+        <S.FilterButton onClick={handleClickAuthor}>
+          исполнителю
+          <nav>
+            <S.MenuFilter
+            >
+              <S.MenuItem> Nero</S.MenuItem>
+              <S.MenuItem> Dynoro, Outwork, Mr. Gee</S.MenuItem>
+              <S.MenuItem> Ali Bakgor</S.MenuItem>
+              <S.MenuItem> Стоункат, Psychopath</S.MenuItem>
+              <S.MenuItem> Jaded, Will Clarke, AR/CO</S.MenuItem>
+              <S.MenuItem> Blue Foundation, Zeds Dead</S.MenuItem>
+              <S.MenuItem>
+                HYBIT, Mr. Black, Offer Nissim, Hi Profile
+              </S.MenuItem>
+              <S.MenuItem> minthaze</S.MenuItem>
+              <S.MenuItem> Calvin Harris, Disciples</S.MenuItem>
+              <S.MenuItem> Tom Boxer</S.MenuItem>
+            </S.MenuFilter>
+          </nav>
+        </S.FilterButton>
+      ) : (
+        <S.FilterButton onClick={handleClickAuthor}>исполнителю</S.FilterButton>
+      )}
+      {openYear ? (
+        <S.FilterButton onClick={handleClickYear}>
+          году выпуска
+          <nav>
+            <S.MenuFilter>
+              <S.MenuItem> По умолчанию</S.MenuItem>
+              <S.MenuItem> Сначала новые</S.MenuItem>
+              <S.MenuItem> Сначала старые</S.MenuItem>
+            </S.MenuFilter>
+          </nav>
+        </S.FilterButton>
+      ) : (
+        <S.FilterButton onClick={handleClickYear}>году выпуска</S.FilterButton>
+      )}
+      {openGenre ? (
+        <S.FilterButton onClick={handleClickGenre}>
+          жанру
+          <nav>
+            <S.MenuFilter>
+              <S.MenuItem> Рок</S.MenuItem>
+              <S.MenuItem> Хип-хоп</S.MenuItem>
+              <S.MenuItem> Поп-музыка</S.MenuItem>
+              <S.MenuItem> Техно</S.MenuItem>
+              <S.MenuItem> Инди</S.MenuItem>
+            </S.MenuFilter>
+          </nav>
+        </S.FilterButton>
+      ) : (
+        <S.FilterButton onClick={handleClickGenre}>жанру</S.FilterButton>
+      )}
+    </S.CenterblockFilter>
   );
 }
 export default CenterBlockFilter;

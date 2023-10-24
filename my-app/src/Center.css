@@ -126,10 +126,11 @@
   padding: 6px 20px;
   position: relative;
 } */
-
-.filter__button:not(:last-child) {
+/* StyledCenterBlockFilter */
+/* .filter__button:not(:last-child) {
   margin-right: 10px;
-}
+} */
+
 /* centerblock */
 /* .content__title {
   display: -webkit-box;

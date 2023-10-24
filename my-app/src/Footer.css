@@ -42,14 +42,14 @@
   width: 60px;
   text-align: end;
 }
-/* 7 компонент низ */
-.playlist__item {
+/* Track */
+/* .playlist__item {
   width: 100%;
   display: block;
   margin-bottom: 12px;
-}
-
-.playlist__track {
+} */
+/* Track */
+/* .playlist__track {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -63,9 +63,9 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.track__title {
+} */
+/* Track */
+/* .track__title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -77,9 +77,9 @@
   -ms-flex-align: center;
   align-items: center;
   width: 447px;
-}
-
-.track__title-image {
+} */
+/* Track */
+/* .track__title-image {
   width: 51px;
   height: 51px;
   padding: 16px;
@@ -94,32 +94,32 @@
   -ms-flex-pack: center;
   justify-content: center;
   margin-right: 17px;
-}
-
-.track__title-svg {
+} */
+/* Track */
+/* .track__title-svg {
   width: 18px;
   height: 17px;
   fill: transparent;
   stroke: #4e4e4e;
-}
-
-.track__title-link {
+} */
+/* Track */
+/* .track__title-link {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
-}
-
-.track__title-span {
+} */
+/* Track */
+/* .track__title-span {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: #4e4e4e;
-}
-
-.track__author {
+} */
+/* Track */
+/* .track__author {
   width: 321px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -127,45 +127,49 @@
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
-}
-
-.track__author-link {
+} */
+/* Track */
+/* .track__author-link {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
   text-align: left;
-}
+} */
+/* Track */
 
-.track__album {
+/* .track__album {
   width: 245px;
-}
+} */
+/* Track */
 
-.track__album-link {
+/* .track__album-link {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: #696969;
-}
+} */
+/* Track */
 
-.track__time-svg {
+/* .track__time-svg {
   width: 14px;
   height: 12px;
   margin-right: 17px;
   fill: transparent;
   stroke: #696969;
-}
+} */
+/* Track */
 
-.track__time-text {
+/* .track__time-text {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   text-align: right;
   color: #696969;
-}
+} */
 /* MainSideBar */
 /* .sidebar__personal {
   display: -webkit-box;

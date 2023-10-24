@@ -43,7 +43,7 @@ body {
   color: #ffffff;
 }
 /* выпадающий список */
-.menu-filter {
+/* .menu-filter {
   position: absolute;
   top: calc(100% - -10px);
   left: 35px;
@@ -54,26 +54,27 @@ body {
   border-radius: 10px;
   height: 150px;
   overflow-y: scroll;
-}
+} */
 /* скролл! */
-.menu-filter::-webkit-scrollbar {
+/* .menu-filter::-webkit-scrollbar {
   width: 8px;
-}
-.menu-filter::-webkit-scrollbar-track {
+} */
+/* .menu-filter::-webkit-scrollbar-track {
   background: #272727;
-}
-.menu-filter::-webkit-scrollbar-thumb {
-  background-color: black; /* цвет бегунка */
-  border-radius: 10px; /* округлось бегунка */
+} */
+/* .menu-filter::-webkit-scrollbar-thumb {
+  background-color: black; 
+  border-radius: 10px; 
   border: 1px solid black;
-}
+} */
+
 ._btn-text_active {
   cursor: pointer;
   border-color: #d9b6ff;
   color: #d9b6ff;
   cursor: pointer;
 }
-
+/* 
 .menu-filter::before,
 .menu-filter::after {
   display: block;
@@ -83,22 +84,25 @@ body {
   height: 20px;
   left: 25px;
   border: 10px solid transparent;
-}
-
-.menu-filter::before {
+} */
+/* CenterBlockFilter */
+/* .menu-filter::before {
   top: -20px;
   border-bottom: 10px solid #d9b6ff;
 }
+/* CenterBlockFilter */
 
-.menu-filter::after {
-  top: -19px;
-  border-bottom: 10px solid #272727;
-}
-.menu-list {
+/* .menu-filter::after { */
+  /* top: -19px; */
+  /* border-bottom: 10px solid #272727; */
+/* }  */
+/* burgerMenu */
+/* .menu-list {
   height: 150px;
   overflow-y: scroll;
-}
-.menu-item {
+} */
+/* burgerMenu and CenterBlockFilter */
+/* .menu-item {
   display: flex;
   align-items: center;
   padding: 5px;
@@ -107,7 +111,7 @@ body {
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
-}
+} */
 
 .menu-item:hover {
   color: #d9b6ff;

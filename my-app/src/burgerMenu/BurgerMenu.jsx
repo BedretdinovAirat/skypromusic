@@ -1,19 +1,20 @@
 import React from "react";
 import "../style.css";
+import * as S from "../styledComponents/StyledBurgerMenu";
 const BurgerMenu = ({ items, active, setActive }) => {
   return (
-    <div className={active ? "nav__menu menu active" : "nav__menu menu"}>
-      <ul className="menu__list">
+    <S.NavMenu
+      active={active}
+      onClick={() => setActive(active)}
+    >
+      <S.MenuList>
         {items.map((item) => (
-          <li className="menu__item">
-            <a href={item.href} className="menu__link">
-              {item.value}
-            </a>
-          </li>
+          <S.MenuItem>
+            <S.MenuLink href={item.href}>{item.value}</S.MenuLink>
+          </S.MenuItem>
         ))}
-      </ul>
-    </div>
+      </S.MenuList>
+    </S.NavMenu>
   );
 };
 export default BurgerMenu;
-// работает со стилем nav__menu menu

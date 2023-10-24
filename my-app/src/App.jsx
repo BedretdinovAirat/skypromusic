@@ -9,46 +9,20 @@ import MainSideBar from "./components/MainSideBar";
 import Bar from "./components/Bar";
 import Footer from "./components/Footer";
 import React from "react";
-import styled from "styled-components";
-const StyledWrapper = styled.div`
-  width: 100%;
-  min-height: 100%;
-  overflow: hidden;
-  background-color: #383838;
-`;
-const StyledContainer = styled.div`
-  max-width: 1920px;
-  height: 100vh;
-  margin: 0 auto;
-  position: relative;
-  background-color: #181818;
-`;
-const StyledMain = styled.div`
-  -webkit-box-flex: 1;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-`;
+import * as S from "./styledComponents/StyledApp";
 function App() {
   return (
-    <StyledWrapper>
-      <StyledContainer>
-        <StyledMain>
+    <S.Wrapper>
+      <S.Container>
+        <S.Main>
           <Navigation />
           <CenterBlock />
           <MainSideBar />
-        </StyledMain>
+        </S.Main>
         <Bar />
         <Footer />
-      </StyledContainer>
-    </StyledWrapper>
+      </S.Container>
+    </S.Wrapper>
   );
 }
 
