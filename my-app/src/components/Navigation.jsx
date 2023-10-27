@@ -3,7 +3,6 @@ import "../style.css";
 import React from "react";
 import * as S from "../styledComponents/StyledNavigation";
 
-// здесь работа со стилями закончена, кроме тернарных операторов
 function Navigation() {
   const [menuActive, setMenuActive] = React.useState(false);
   const items = [

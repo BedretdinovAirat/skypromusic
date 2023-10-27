@@ -10,6 +10,7 @@ import Bar from "./components/Bar";
 import Footer from "./components/Footer";
 import React from "react";
 import * as S from "./styledComponents/StyledApp";
+import { AppRoutes } from "./routes";
 function App() {
   return (
     <S.Wrapper>
@@ -17,6 +18,7 @@ function App() {
         <S.Main>
           <Navigation />
           <CenterBlock />
+          <AppRoutes />
           <MainSideBar />
         </S.Main>
         <Bar />
