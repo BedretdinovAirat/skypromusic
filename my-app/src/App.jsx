@@ -18,6 +18,7 @@ function App() {
         <S.Main>
           <Navigation />
           <CenterBlock />
+          {/* Роуты */}
           <AppRoutes />
           <MainSideBar />
         </S.Main>
