@@ -1,41 +1,43 @@
 // import * as S from "./styledComponents/StyledBlockSearch";
+import Navigation from "../../components/Navigation";
+// import CenterBlock from "../../components/CenterBlock";
+// import MainSideBar from "../../components/MainSideBar";
+import * as S from "../../styledComponents/StyledApp";
+import Bar from "../../components/Bar";
+import Footer from "../../components/Footer";
 
+import "../../App.css";
 export const NotFound = () => {
   return (
-    <div class="wrapper">
-      <div class="container"></div>
-      <main class="main">
-        {" "}
-        <nav className="main__nav nav">
-          <div className="nav__logo logo">
-            <img className="logo__image" src="img/logo.png" alt="logo" />
+    <S.Wrapper>
+      <S.Container>
+        <S.Main>
+          <div className="notFound">
+            <Navigation />
+            <div className="notFound__content">
+              <h1 className="notFound__title">404</h1>
+              <p className="notFound__subtitle">Страница не найдена</p>
+              <img
+                className="notFound__image"
+                src="img/crying.svg"
+                alt="sad"
+              ></img>
+              <p className="notFound__text">
+                Возможно, она была удалена или перенесена на другой адреc
+              </p>
+              <button className="notFound__button">
+                <use className="notFound__link">Вернуться на главную</use>;
+              </button>
+            </div>
+            {/* <CenterBlock /> */}
+            {/* <MainSideBar /> */}
+            {/* </S.Main> */}
           </div>
-          <div className="nav__burger burger">
-            <span className="burger__line"></span>
-            <span className="burger__line"></span>
-            <span className="burger__line"></span>
-          </div>
-          <div className="nav__menu menu">
-            <ul className="menu__list">
-              <li className="menu__item">
-                <a href="!#" className="menu__link">
-                  Главное
-                </a>
-              </li>
-              <li className="menu__item">
-                <a href="!#" className="menu__link">
-                  Мой плейлист
-                </a>
-              </li>
-              <li className="menu__item">
-                <a href="../signin.html" className="menu__link">
-                  Войти
-                </a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </main>
-    </div>
+        </S.Main>
+        <Bar />
+        <Footer />
+      </S.Container>
+    </S.Wrapper>
   );
 };
+//

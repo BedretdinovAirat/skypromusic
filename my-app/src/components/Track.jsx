@@ -5,7 +5,6 @@ import * as S from "../styledComponents/StyledTrack";
 
 function Track({ track }) {
   const [isLoading, setIsLoading] = React.useState(true);
-
   React.useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);

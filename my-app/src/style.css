@@ -93,8 +93,8 @@ body {
 /* CenterBlockFilter */
 
 /* .menu-filter::after { */
-  /* top: -19px; */
-  /* border-bottom: 10px solid #272727; */
+/* top: -19px; */
+/* border-bottom: 10px solid #272727; */
 /* }  */
 /* burgerMenu */
 /* .menu-list {
@@ -113,6 +113,14 @@ body {
   color: #ffffff;
 } */
 
-.menu-item:hover {
+/* .menu-item:hover {
   color: #d9b6ff;
+} */
+
+.App-link {
+  color: white;
+  text-decoration: none;
+}
+.App-link.active {
+  text-decoration: underline;
 }

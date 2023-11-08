@@ -3,13 +3,8 @@ import "../style.css";
 import React from "react";
 import * as S from "../styledComponents/StyledNavigation";
 
-function Navigation() {
+function Navigation({user, logOut}) {
   const [menuActive, setMenuActive] = React.useState(false);
-  const items = [
-    { value: "Главное", href: "!" },
-    { value: "Мой плейлист", href: "!" },
-    { value: "Войти", href: "!" },
-  ];
   return (
     <S.MainNav>
       <S.NavLogo>
@@ -20,7 +15,7 @@ function Navigation() {
         <S.BurgerLine></S.BurgerLine>
         <S.BurgerLine></S.BurgerLine>
       </S.NavBurger>
-      <BurgerMenu active={menuActive} setActive={setMenuActive} items={items} />
+      <BurgerMenu user={user} logOut={logOut} active={menuActive} setActive={setMenuActive} />
     </S.MainNav>
   );
 }
