@@ -1,7 +1,7 @@
 import "../style.css";
 import * as S from "../styledComponents/StyledBar";
 
-function Bar() {
+export default function Bar({ changeTrack }) {
   return (
     <S.Bar>
       <S.BarContent>
@@ -44,12 +44,12 @@ function Bar() {
                 </S.TrackPlayImage>
                 <S.TrackPlayAuthor>
                   <S.TrackPlayAuthorLink href="http://">
-                    Ты та...
+                    {changeTrack.name}
                   </S.TrackPlayAuthorLink>
                 </S.TrackPlayAuthor>
                 <S.TrackPlayAlbum>
                   <S.TrackPlayAlbumLink href="http://">
-                    Баста
+                    {changeTrack.author}
                   </S.TrackPlayAlbumLink>
                 </S.TrackPlayAlbum>
               </S.TrackPlayContain>
@@ -76,10 +76,7 @@ function Bar() {
                 </S.VolumeSVG>
               </S.VolumeImage>
               <S.VolumeProgress>
-                <S.VolumeProgressLine
-                  type="range"
-                  name="range"
-                />
+                <S.VolumeProgressLine type="range" name="range" />
               </S.VolumeProgress>
             </S.VolumeContent>
           </S.BarVolumeBlock>
@@ -88,4 +85,3 @@ function Bar() {
     </S.Bar>
   );
 }
-export default Bar;

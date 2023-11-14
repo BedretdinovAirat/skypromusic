@@ -7,7 +7,7 @@ import { Login } from "./pages/login";
 import { Registration } from "./pages/registration";
 import React from "react";
 import { ProtectedRoute } from "./protectedRoute/ProtectedRoute";
-export const AppRoutes = () => {
+export const AppRoutes = ({ tracks, setTracks }) => {
   const [user, setUser] = React.useState(null);
   const logOut = () => {
     localStorage.removeItem("user");
@@ -16,8 +16,21 @@ export const AppRoutes = () => {
   return (
     <Routes>
       <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
-        <Route path="/" element={<Main user={user} logOut={logOut} />} />
-        <Route path="/myplaylist" element={<MyPlaylist />} />
+        <Route
+          path="/"
+          element={
+            <Main
+              tracks={tracks}
+              setTracks={setTracks}
+              user={user}
+              logOut={logOut}
+            />
+          }
+        />
+        <Route
+          path="/myplaylist"
+          element={<MyPlaylist tracks={tracks} setTracks={setTracks} />}
+        />
         <Route path="/categories/:id" element={<Categories />} />
       </Route>
       <Route path="/login" element={<Login user={user} setUser={setUser} />} />

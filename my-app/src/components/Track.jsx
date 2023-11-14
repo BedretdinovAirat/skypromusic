@@ -3,15 +3,27 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import * as S from "../styledComponents/StyledTrack";
 
-function Track({ track }) {
+function Track({
+  track,
+  setTracks,
+  setChangeTrack,
+  name,
+  author,
+  album,
+  duration_in_seconds,
+}) {
   const [isLoading, setIsLoading] = React.useState(true);
+
   React.useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 5000);
   }, []);
   return (
-    <S.PlaylistItem key={track.id}>
+    <S.PlaylistItem
+      onClick={() => setChangeTrack({ name, album, author })}
+      key={track.id}
+    >
       <S.PlaylistTrack>
         <S.TrackTitle>
           <S.TrackTitleImage>
@@ -25,8 +37,8 @@ function Track({ track }) {
             </SkeletonTheme>
           ) : (
             <S.TrackTitleText>
-              <S.TrackTitleLink href="http://">
-                {track.name} <S.TrackTitleSpan></S.TrackTitleSpan>
+              <S.TrackTitleLink>
+                {name} <S.TrackTitleSpan></S.TrackTitleSpan>
               </S.TrackTitleLink>
             </S.TrackTitleText>
           )}
@@ -37,7 +49,7 @@ function Track({ track }) {
           </SkeletonTheme>
         ) : (
           <S.TrackAuthor>
-            <S.TrackAuthorLink href="http://">{track.author}</S.TrackAuthorLink>
+            <S.TrackAuthorLink>{author}</S.TrackAuthorLink>
           </S.TrackAuthor>
         )}
         {isLoading ? (
@@ -46,7 +58,7 @@ function Track({ track }) {
           </SkeletonTheme>
         ) : (
           <S.TrackAlbum>
-            <S.TrackAlbumLink href="http://">{track.album}</S.TrackAlbumLink>
+            <S.TrackAlbumLink>{album}</S.TrackAlbumLink>
           </S.TrackAlbum>
         )}
         {isLoading ? (
@@ -62,7 +74,7 @@ function Track({ track }) {
                 }`}
               />
             </S.TrackTimeSVG>
-            <S.TrackTimeText>{track.time}</S.TrackTimeText>
+            <S.TrackTimeText>{duration_in_seconds}</S.TrackTimeText>
           </S.TrackTime>
         )}
       </S.PlaylistTrack>
