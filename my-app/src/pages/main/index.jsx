@@ -14,6 +14,7 @@ export const Main = ({ user, logOut, tracks, setTracks }) => {
         <S.Main>
           <Navigation user={user} logOut={logOut} />
           <CenterBlock
+            changeTrack={changeTrack}
             setChangeTrack={setChangeTrack}
             tracks={tracks}
             setTracks={setTracks}

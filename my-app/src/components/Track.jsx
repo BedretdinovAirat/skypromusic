@@ -11,6 +11,7 @@ function Track({
   author,
   album,
   duration_in_seconds,
+  track_file,
 }) {
   const [isLoading, setIsLoading] = React.useState(true);
 
@@ -21,8 +22,7 @@ function Track({
   }, []);
   return (
     <S.PlaylistItem
-      onClick={() => setChangeTrack({ name, album, author })}
-      key={track.id}
+      onClick={() => setChangeTrack({ name, album, author, track_file })}
     >
       <S.PlaylistTrack>
         <S.TrackTitle>

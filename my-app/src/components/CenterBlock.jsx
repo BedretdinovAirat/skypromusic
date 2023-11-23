@@ -30,6 +30,8 @@ function CenterBlock({ tracks, setChangeTrack }) {
               album={track.album}
               duration_in_seconds={track.duration_in_seconds}
               setChangeTrack={setChangeTrack}
+              key={track.id}
+              track_file={track.track_file}
             />
           ))}
         </S.ContentPlaylist>
