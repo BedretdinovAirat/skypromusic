@@ -7,7 +7,7 @@ import { Login } from "./pages/login";
 import { Registration } from "./pages/registration";
 import React from "react";
 import { ProtectedRoute } from "./protectedRoute/ProtectedRoute";
-export const AppRoutes = ({ tracks, setTracks }) => {
+export const AppRoutes = ({ tracks, setTracks, track_file }) => {
   const [user, setUser] = React.useState(null);
   const logOut = () => {
     localStorage.removeItem("user");
@@ -29,7 +29,13 @@ export const AppRoutes = ({ tracks, setTracks }) => {
         />
         <Route
           path="/myplaylist"
-          element={<MyPlaylist tracks={tracks} setTracks={setTracks} />}
+          element={
+            <MyPlaylist
+              tracks={tracks}
+              setTracks={setTracks}
+              track_file={track_file}
+            />
+          }
         />
         <Route path="/categories/:id" element={<Categories />} />
       </Route>

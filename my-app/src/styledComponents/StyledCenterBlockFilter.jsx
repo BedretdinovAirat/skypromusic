@@ -64,7 +64,7 @@ export const MenuFilter = styled.div`
   background-color: #272727;
   border: 1px solid #d9b6ff;
   border-radius: 10px;
-  height: 150px;
+  height: 250px;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     width: 8px;
@@ -102,6 +102,4 @@ export const NavMenu = styled.div`
   height: 1002px;
   display: block;
   visibility: visible;
-  transform: ${(props) => (props.active ? "menu-filter" : "nav__menu")};
-  transition: all 0.2s;
 `;

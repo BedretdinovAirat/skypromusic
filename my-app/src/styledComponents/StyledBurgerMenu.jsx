@@ -19,7 +19,4 @@ export const NavMenu = styled.div`
   height: 1002px;
   display: block;
   visibility: visible;
-  transform: ${(props) =>
-    props.active ? "transform: translateX(0)" : "translateX(-500%)"};
-  transition: all 0.2s;
 `;

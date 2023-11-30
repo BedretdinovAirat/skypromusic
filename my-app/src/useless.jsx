@@ -555,17 +555,13 @@
 //           </div> */
 // }
 
-
-
-
-
 // БУРГЕРМЕНЮ
 // {/* <BurgerMenu active={menuActive} setActive={setMenuActive} items={items} />; */}
 // const items = [
-  //   { value: "Главное", href: "!" },
-  //   { value: "Мой плейлист", href: "!" },
-  //   { value: "Войти", href: "!" },
-  // ];
+//   { value: "Главное", href: "!" },
+//   { value: "Мой плейлист", href: "!" },
+//   { value: "Войти", href: "!" },
+// ];
 //   {
 //     /* {items.map((item) => (
 //           <S.MenuItem>
@@ -574,6 +570,13 @@
 //         ))} */
 //   }
 
+// стили бургерменю пропсы
+
+// transform: ${(props) =>
+// props.active ? "translateX(0)" : "translateX(-500%)"};
+// transition: all 0.2s;
+//   transform: ${(props) => (props.active ? "menu-filter" : "nav__menu")};
+// transition: all 0.2s;
 
 // notFound
 // {/* <div class="wrapper">

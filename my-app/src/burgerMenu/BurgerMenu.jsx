@@ -2,9 +2,9 @@ import React from "react";
 import "../style.css";
 import * as S from "../styledComponents/StyledBurgerMenu";
 import { NavLink } from "react-router-dom";
-const BurgerMenu = ({ items, active, setActive, user, logOut }) => {
+const BurgerMenu = ({ user, logOut }) => {
   return (
-    <S.NavMenu active={active} onClick={() => setActive(active)}>
+    // <S.NavMenu>
       <S.MenuList>
         <S.MenuItem>
           <NavLink className="App-link" to="/">
@@ -16,11 +16,15 @@ const BurgerMenu = ({ items, active, setActive, user, logOut }) => {
             Мой плейлист
           </NavLink>
         </S.MenuItem>
-        <NavLink onClick={user !== null ? logOut : null} className="App-link" to="/myplaylist">
+        <NavLink
+          onClick={user !== null ? logOut : null}
+          className="App-link"
+          to="/myplaylist"
+        >
           Выйти
         </NavLink>
       </S.MenuList>
-    </S.NavMenu>
+    // </S.NavMenu>
   );
 };
 export default BurgerMenu;

@@ -1,7 +1,4 @@
-// import * as S from "./styledComponents/StyledBlockSearch";
 import Navigation from "../../components/Navigation";
-// import CenterBlock from "../../components/CenterBlock";
-// import MainSideBar from "../../components/MainSideBar";
 import * as S from "../../styledComponents/StyledApp";
 import Bar from "../../components/Bar";
 import Footer from "../../components/Footer";
@@ -29,9 +26,6 @@ export const NotFound = () => {
                 <use className="notFound__link">Вернуться на главную</use>;
               </button>
             </div>
-            {/* <CenterBlock /> */}
-            {/* <MainSideBar /> */}
-            {/* </S.Main> */}
           </div>
         </S.Main>
         <Bar />

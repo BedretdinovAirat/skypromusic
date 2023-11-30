@@ -3,13 +3,7 @@ import "./style.css";
 import "./Header.css";
 import "./Center.css";
 import "./Footer.css";
-// import Navigation from "./components/Navigation";
-// import CenterBlock from "./components/CenterBlock";
-// import MainSideBar from "./components/MainSideBar";
-// import Bar from "./components/Bar";
-// import Footer from "./components/Footer";
 import React from "react";
-// import * as S from "./styledComponents/StyledApp";
 import { AppRoutes } from "./routes";
 import { getTracks } from "./api/Api";
 function App() {

@@ -1,15 +1,10 @@
 import Navigation from "../../components/Navigation";
 import "../../App.css";
-// import Track from "../../components/Track";
-// import * as S from "../../styledComponents/StyledMainSideBar";
-// import React from "react";
-// import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-// import "react-loading-skeleton/dist/skeleton.css";
 import Bar from "../../components/Bar";
 import Footer from "../../components/Footer";
 import * as S from "../../styledComponents/StyledApp";
 
-export const MyPlaylist = () => {
+export const MyPlaylist = ({ changeTrack }) => {
   return (
     <S.Wrapper>
       <S.Container>
@@ -36,7 +31,7 @@ export const MyPlaylist = () => {
             </div>
           </div> */}
         </S.Main>
-        <Bar />
+        {changeTrack && <Bar changeTrack={changeTrack} />}
         <Footer />
       </S.Container>
     </S.Wrapper>

@@ -50,6 +50,7 @@ export const SidebarBlock = styled.div`
   justify-content: flex-start;
 `;
 export const SidebarList = styled.div`
+  gap: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

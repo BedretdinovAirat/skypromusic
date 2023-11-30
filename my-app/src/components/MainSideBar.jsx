@@ -4,7 +4,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import * as S from "../styledComponents/StyledMainSideBar";
 
-function MainSideBar({user, logOut}) {
+function MainSideBar({ user, logOut }) {
   const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
@@ -15,9 +15,7 @@ function MainSideBar({user, logOut}) {
   return (
     <S.MainSidebar>
       <S.SidebarPersonal>
-        <S.SidebarPersonalName>
-          Bedretdionv.Airat
-        </S.SidebarPersonalName>
+        <S.SidebarPersonalName>Bedretdionv.Airat</S.SidebarPersonalName>
         <S.SidebarIcon onClick={user !== null ? logOut : null}>
           <svg alt="logout">
             <use xlinkHref="img/icon/sprite.svg#logout"></use>
