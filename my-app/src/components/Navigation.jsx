@@ -9,7 +9,6 @@ function Navigation({ user, logOut }) {
 
   const handleBurgerMenu = () => {
     setMenuActive(!menuActive);
-    console.log("job done");
   };
 
   return (
