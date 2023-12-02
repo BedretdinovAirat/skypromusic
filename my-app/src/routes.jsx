@@ -10,23 +10,23 @@ import { ProtectedRoute } from "./protectedRoute/ProtectedRoute";
 import AuthPage from "./pages/auth/AuthPage";
 import { AuthProvider } from "./store/AuthContext";
 export const AppRoutes = ({ tracks, setTracks, track_file }) => {
-  const [user, setUser] = React.useState(null);
-  const logOut = () => {
-    localStorage.removeItem("user");
-    setUser(null);
-  };
+  // const [user, setUser] = React.useState(null);
+  // const logOut = () => {
+  //   localStorage.removeItem("user");
+  //   setUser(null);
+  // };
   return (
     <AuthProvider>
       <Routes>
-        <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
+        <Route element={<ProtectedRoute />}>
           <Route
             path="/"
             element={
               <Main
                 tracks={tracks}
                 setTracks={setTracks}
-                user={user}
-                logOut={logOut}
+                // user={user}
+                // logOut={logOut}
               />
             }
           />
