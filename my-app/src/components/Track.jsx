@@ -2,6 +2,7 @@ import React from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import * as S from "../styledComponents/StyledTrack";
+import { useThemeContext } from "../pages/ThemeContext/ThemeContext";
 
 function Track({
   track,
@@ -14,7 +15,7 @@ function Track({
   track_file,
 }) {
   const [isLoading, setIsLoading] = React.useState(true);
-
+  const { theme } = useThemeContext();
   React.useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
@@ -37,7 +38,7 @@ function Track({
             </SkeletonTheme>
           ) : (
             <S.TrackTitleText>
-              <S.TrackTitleLink>
+              <S.TrackTitleLink theme={theme}>
                 {name} <S.TrackTitleSpan></S.TrackTitleSpan>
               </S.TrackTitleLink>
             </S.TrackTitleText>
@@ -49,7 +50,7 @@ function Track({
           </SkeletonTheme>
         ) : (
           <S.TrackAuthor>
-            <S.TrackAuthorLink>{author}</S.TrackAuthorLink>
+            <S.TrackAuthorLink theme={theme}>{author}</S.TrackAuthorLink>
           </S.TrackAuthor>
         )}
         {isLoading ? (
@@ -58,7 +59,7 @@ function Track({
           </SkeletonTheme>
         ) : (
           <S.TrackAlbum>
-            <S.TrackAlbumLink>{album}</S.TrackAlbumLink>
+            <S.TrackAlbumLink theme={theme}>{album}</S.TrackAlbumLink>
           </S.TrackAlbum>
         )}
         {isLoading ? (

@@ -9,7 +9,6 @@ export const PageContainer = styled.div`
 export const ModalForm = styled.div`
   --modal-width: 366px;
   --modal-height: 439px;
-
   position: absolute;
   left: calc(50% - (var(--modal-width) / 2));
   top: calc(50% - (var(--modal-height) / 2));

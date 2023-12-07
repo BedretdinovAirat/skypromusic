@@ -9,43 +9,52 @@ import { Categories } from "./pages/categories";
 import { ProtectedRoute } from "./protectedRoute/ProtectedRoute";
 import AuthPage from "./pages/auth/AuthPage";
 import { AuthProvider } from "./store/AuthContext";
+import { themes, ThemeContext } from "./pages/ThemeContext/ThemeContext";
 export const AppRoutes = ({ tracks, setTracks, track_file }) => {
-  // const [user, setUser] = React.useState(null);
-  // const logOut = () => {
-  //   localStorage.removeItem("user");
-  //   setUser(null);
-  // };
+  const [currentTheme, setCurrentTheme] = React.useState(themes.light);
+
+  const toggleTheme = () => {
+    if (currentTheme === themes.dark) {
+      setCurrentTheme(themes.light);
+      return;
+    }
+
+    setCurrentTheme(themes.dark);
+  };
+
   return (
     <AuthProvider>
-      <Routes>
-        <Route element={<ProtectedRoute />}>
-          <Route
-            path="/"
-            element={
-              <Main
-                tracks={tracks}
-                setTracks={setTracks}
-                // user={user}
-                // logOut={logOut}
-              />
-            }
-          />
-          <Route
-            path="/myplaylist"
-            element={
-              <MyPlaylist
-                tracks={tracks}
-                setTracks={setTracks}
-                track_file={track_file}
-              />
-            }
-          />
-          <Route path="/categories/:id" element={<Categories />} />
-        </Route>
-        <Route path="/login" element={<AuthPage isLoginMode={true} />} />
-        <Route path="/register" element={<AuthPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <ThemeContext.Provider value={{ theme: currentTheme, toggleTheme }}>
+        <Routes>
+          <Route element={<ProtectedRoute />}>
+            <Route
+              path="/"
+              element={
+                <Main
+                  tracks={tracks}
+                  setTracks={setTracks}
+                  // user={user}
+                  // logOut={logOut}
+                />
+              }
+            />
+            <Route
+              path="/myplaylist"
+              element={
+                <MyPlaylist
+                  tracks={tracks}
+                  setTracks={setTracks}
+                  track_file={track_file}
+                />
+              }
+            />
+            <Route path="/categories/:id" element={<Categories />} />
+          </Route>
+          <Route path="/login" element={<AuthPage isLoginMode={true} />} />
+          <Route path="/register" element={<AuthPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </ThemeContext.Provider>
     </AuthProvider>
   );
 };

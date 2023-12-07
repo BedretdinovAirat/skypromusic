@@ -13,20 +13,58 @@ export default function AuthPage({ isLoginMode = false }) {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
 
+  // изменение кнопки
+  // const [button, setButton] = useState(false);
+
   const handleLogin = async ({ email, password }) => {
-    const user = await login(email, password);
-    loginUser(user);
-    navigate("/");
-    // alert(`Выполняется вход: ${email} ${password}`);
-    // setError("Неизвестная ошибка входа");
+    try {
+      const user = await login(email, password);
+      loginUser(user);
+      navigate("/");
+      if (email === "" && password === "") {
+        setError("Заполните почту и пароль");
+        return;
+      }
+
+      if (email === "") {
+        setError("Заполните почту");
+        return;
+      }
+      if (password === "") {
+        setError("Заполните пароль");
+        return;
+      }
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   const handleRegister = async () => {
-    const user = await register({ email, password, username: email });
-    loginUser(user);
-    navigate("/");
-    // alert(`Выполняется регистрация: ${email} ${password}`);
-    // setError("Неизвестная ошибка регистрации");
+    try {
+      const user = await register({ email, password, username: email });
+      loginUser(user);
+      navigate("/");
+      if (email === "" && password === "") {
+        setError("Заполните почту и пароль");
+        return;
+      }
+
+      if (email === "") {
+        setError("Заполните почту");
+        return;
+      }
+      if (password === "") {
+        setError("Заполните пароль");
+        return;
+      }
+
+      if (password !== repeatPassword) {
+        setError("Пароли не совпадают");
+        return;
+      }
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы

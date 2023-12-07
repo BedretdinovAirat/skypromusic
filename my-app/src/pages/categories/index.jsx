@@ -3,7 +3,10 @@ import * as S from "../../styledComponents/StyledApp";
 import { useParams } from "react-router-dom";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
+import { useThemeContext } from "../ThemeContext/ThemeContext";
 export const Categories = () => {
+  const { theme } = useThemeContext();
+
   const params = useParams();
   const categories = [
     {
@@ -21,11 +24,11 @@ export const Categories = () => {
   ];
   const category = categories.find((item) => item.id === Number(params.id));
   return (
-    <S.Wrapper>
+    <S.Wrapper theme={theme}>
       <S.Container>
         <S.Main>
           <Navigation />
-        <S.Container>{category.title}</S.Container>
+          <S.Container>{category.title}</S.Container>
         </S.Main>
         <Footer />
       </S.Container>

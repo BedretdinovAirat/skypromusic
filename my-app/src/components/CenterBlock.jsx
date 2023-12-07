@@ -4,11 +4,15 @@ import CenterBlockFilter from "./CenterBlockFilter";
 import Track from "./Track";
 import * as S from "../styledComponents/StyledCenterBlock";
 import React from "react";
+import { useThemeContext } from "../pages/ThemeContext/ThemeContext";
+
 function CenterBlock({ tracks, setChangeTrack }) {
+  const { theme } = useThemeContext();
+
   return (
     <S.MainCenterblock>
       <BlockSearch />
-      <S.CenterBlockH2>Треки</S.CenterBlockH2>
+      <S.CenterBlockH2 theme={theme}>Треки</S.CenterBlockH2>
       <CenterBlockFilter />
       <S.CenterblockContent>
         <S.ContentTitle>

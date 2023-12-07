@@ -3,10 +3,13 @@ import "../../App.css";
 import Bar from "../../components/Bar";
 import Footer from "../../components/Footer";
 import * as S from "../../styledComponents/StyledApp";
+import { useThemeContext } from "../ThemeContext/ThemeContext";
 
 export const MyPlaylist = ({ changeTrack }) => {
+  const { theme } = useThemeContext();
+
   return (
-    <S.Wrapper>
+    <S.Wrapper theme={theme}>
       <S.Container>
         <S.Main>
           <Navigation />

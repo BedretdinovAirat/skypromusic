@@ -2,8 +2,8 @@ import Navigation from "../../components/Navigation";
 import * as S from "../../styledComponents/StyledApp";
 import Bar from "../../components/Bar";
 import Footer from "../../components/Footer";
-
 import "../../App.css";
+
 export const NotFound = () => {
   return (
     <S.Wrapper>
