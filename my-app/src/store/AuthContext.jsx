@@ -6,9 +6,6 @@ export const AuthContext = createContext(null);
 function getAuthFromLocalStorage() {
   try {
     const newAuth = JSON.parse(localStorage.getItem("auth"));
-    // if (newAuth) {
-    //   setUser(true);
-    // }
     return newAuth;
   } catch (error) {
     console.log(error);

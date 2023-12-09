@@ -1,6 +1,6 @@
 import Navigation from "../../components/Navigation";
 import * as S from "../../styledComponents/StyledApp";
-import Bar from "../../components/Bar";
+// import Bar from "../../components/Bar";
 import Footer from "../../components/Footer";
 import "../../App.css";
 
@@ -28,7 +28,7 @@ export const NotFound = () => {
             </div>
           </div>
         </S.Main>
-        <Bar />
+        {/* <Bar /> */}
         <Footer />
       </S.Container>
     </S.Wrapper>

@@ -8,7 +8,7 @@ import Footer from "../../components/Footer";
 import React from "react";
 import { useThemeContext } from "../ThemeContext/ThemeContext";
 
-export const Main = ({ user, logOut, tracks, setTracks }) => {
+export const Main = ({ user, logOut, tracks, setTracks, isLoading }) => {
   const [changeTrack, setChangeTrack] = React.useState(null);
   const { theme } = useThemeContext();
   return (
@@ -17,6 +17,7 @@ export const Main = ({ user, logOut, tracks, setTracks }) => {
         <S.Main>
           <Navigation user={user} logOut={logOut} />
           <CenterBlock
+            isLoading={isLoading}
             changeTrack={changeTrack}
             setChangeTrack={setChangeTrack}
             tracks={tracks}

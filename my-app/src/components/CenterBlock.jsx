@@ -5,8 +5,10 @@ import Track from "./Track";
 import * as S from "../styledComponents/StyledCenterBlock";
 import React from "react";
 import { useThemeContext } from "../pages/ThemeContext/ThemeContext";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-function CenterBlock({ tracks, setChangeTrack }) {
+function CenterBlock({ tracks, setChangeTrack, isLoading }) {
   const { theme } = useThemeContext();
 
   return (
@@ -26,18 +28,29 @@ function CenterBlock({ tracks, setChangeTrack }) {
           </S.PlaylistTitleCol>
         </S.ContentTitle>
         <S.ContentPlaylist>
-          {tracks.map((track) => (
-            <Track
-              track={track}
-              name={track.name}
-              author={track.author}
-              album={track.album}
-              duration_in_seconds={track.duration_in_seconds}
-              setChangeTrack={setChangeTrack}
-              key={track.id}
-              track_file={track.track_file}
-            />
-          ))}
+          {isLoading ? (
+            <SkeletonTheme highlightColor="#696969" baseColor="#272727">
+              <Skeleton
+                width={1080}
+                height={20}
+                count={29}
+                style={{ marginBottom: "25px" }}
+              />
+            </SkeletonTheme>
+          ) : (
+            tracks.map((track) => (
+              <Track
+                track={track}
+                name={track.name}
+                author={track.author}
+                album={track.album}
+                duration_in_seconds={track.duration_in_seconds}
+                setChangeTrack={setChangeTrack}
+                key={track.id}
+                track_file={track.track_file}
+              />
+            ))
+          )}
         </S.ContentPlaylist>
       </S.CenterblockContent>
     </S.MainCenterblock>

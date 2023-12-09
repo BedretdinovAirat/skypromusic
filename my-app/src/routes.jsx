@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import React from "react";
 import { Main } from "./pages/main";
-import { NotFound } from "./pages/notFound";
+import { NotFound } from "./pages/notFound/";
 import { MyPlaylist } from "./pages/myPlaylist";
 import { Categories } from "./pages/categories";
 // import { Login } from "./pages/login";
@@ -10,8 +10,8 @@ import { ProtectedRoute } from "./protectedRoute/ProtectedRoute";
 import AuthPage from "./pages/auth/AuthPage";
 import { AuthProvider } from "./store/AuthContext";
 import { themes, ThemeContext } from "./pages/ThemeContext/ThemeContext";
-export const AppRoutes = ({ tracks, setTracks, track_file }) => {
-  const [currentTheme, setCurrentTheme] = React.useState(themes.light);
+export const AppRoutes = ({ tracks, setTracks, track_file, isLoading }) => {
+  const [currentTheme, setCurrentTheme] = React.useState(themes.dark);
 
   const toggleTheme = () => {
     if (currentTheme === themes.dark) {
@@ -31,6 +31,7 @@ export const AppRoutes = ({ tracks, setTracks, track_file }) => {
               path="/"
               element={
                 <Main
+                  isLoading={isLoading}
                   tracks={tracks}
                   setTracks={setTracks}
                   // user={user}

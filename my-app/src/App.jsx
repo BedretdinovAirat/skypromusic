@@ -7,6 +7,7 @@ import React from "react";
 import { AppRoutes } from "./routes";
 import { getTracks } from "./api/Api";
 function App() {
+  const [isLoading, setIsLoading] = React.useState(true);
   const [tracks, setTracks] = React.useState([
     {
       id: 1,
@@ -93,10 +94,11 @@ function App() {
     getTracks().then((track) => {
       console.log("1", track);
       setTracks(track);
+      setIsLoading(false);
     });
   }, []);
   return (
-    <AppRoutes tracks={tracks} setTracks={setTracks} />
+    <AppRoutes isLoading={isLoading} tracks={tracks} setTracks={setTracks} />
     // <S.Wrapper>
     //   <S.Container>
     //     <S.Main>
