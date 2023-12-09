@@ -36,7 +36,7 @@ export const TrackTitleImage = styled.div`
   width: 51px;
   height: 51px;
   padding: 16px;
-  background: #313131;
+  background: ${(props) => props.theme.backgroundColorNote};
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

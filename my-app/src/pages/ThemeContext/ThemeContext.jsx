@@ -4,10 +4,12 @@ export const themes = {
   light: {
     color: "#181818",
     background: "#ffffff",
+    backroungdColorNote: "#B1B1B1",
   },
   dark: {
     color: "#fff",
     background: "#181818",
+    backroungdColorNote: "#313131",
   },
 };
 

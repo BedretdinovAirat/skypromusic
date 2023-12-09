@@ -26,7 +26,7 @@ function Track({
     >
       <S.PlaylistTrack>
         <S.TrackTitle>
-          <S.TrackTitleImage>
+          <S.TrackTitleImage theme={theme}>
             <S.TrackTitleSVG alt="music">
               <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
             </S.TrackTitleSVG>
