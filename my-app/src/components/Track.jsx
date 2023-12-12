@@ -3,17 +3,18 @@ import React from "react";
 // import "react-loading-skeleton/dist/skeleton.css";
 import * as S from "../styledComponents/StyledTrack";
 import { useThemeContext } from "../pages/ThemeContext/ThemeContext";
-
+import { useDispatch } from "react-redux";
+import { playTracks } from "../store/TracksSlice";
 function Track({
   track,
   setTracks,
-  setChangeTrack,
   name,
   author,
   album,
   duration_in_seconds,
   track_file,
 }) {
+  const dispatch = useDispatch();
   const { theme } = useThemeContext();
   // React.useEffect(() => {
   //   setTimeout(() => {
@@ -22,7 +23,7 @@ function Track({
   // }, []);
   return (
     <S.PlaylistItem
-      onClick={() => setChangeTrack({ name, album, author, track_file })}
+      onClick={() => dispatch(playTracks({ name, album, author, track_file }))}
     >
       <S.PlaylistTrack>
         <S.TrackTitle>

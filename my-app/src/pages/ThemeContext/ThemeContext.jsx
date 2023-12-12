@@ -5,11 +5,13 @@ export const themes = {
     color: "#181818",
     background: "#ffffff",
     backroungdColorNote: "#B1B1B1",
+    backgroundBurgerLine: "#000000",
   },
   dark: {
     color: "#fff",
     background: "#181818",
     backroungdColorNote: "#313131",
+    backgroundBurgerLine: "#FFFFFF",
   },
 };
 

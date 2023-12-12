@@ -49,5 +49,5 @@ export const BurgerLine = styled.span`
   display: inline-block;
   width: 100%;
   height: 1px;
-  background-color: ${(props) => props.theme.color};
+  background-color: ${(props) => props.theme.backgroundBurgerLine};
 `;

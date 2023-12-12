@@ -2,7 +2,13 @@ import "../style.css";
 import * as S from "../styledComponents/StyledBar";
 import React from "react";
 import moment from "moment";
-export default function Bar({ changeTrack }) {
+import { useSelector } from "react-redux";
+// import { useDispatch } from "react-redux";
+
+export default function Bar() {
+  const changeTrack = useSelector((state) => state.tracks.changeTrack);
+  // const dispatch = useDispatch();
+
   const audioRef = React.useRef(null);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [volume, setVolume] = React.useState(1);

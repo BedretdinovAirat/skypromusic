@@ -8,7 +8,7 @@ import { useThemeContext } from "../pages/ThemeContext/ThemeContext";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-function CenterBlock({ tracks, setChangeTrack, isLoading }) {
+function CenterBlock({ tracks, isLoading }) {
   const { theme } = useThemeContext();
 
   return (
@@ -40,14 +40,15 @@ function CenterBlock({ tracks, setChangeTrack, isLoading }) {
           ) : (
             tracks.map((track) => (
               <Track
-                track={track}
-                name={track.name}
-                author={track.author}
-                album={track.album}
-                duration_in_seconds={track.duration_in_seconds}
-                setChangeTrack={setChangeTrack}
+                // track={track}
+                // name={track.name}
+                // author={track.author}
+                // album={track.album}
+                // duration_in_seconds={track.duration_in_seconds}
+                // setChangeTrack={setChangeTrack}
                 key={track.id}
-                track_file={track.track_file}
+                // track_file={track.track_file}
+                {...track}
               />
             ))
           )}

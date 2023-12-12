@@ -1,11 +1,11 @@
 import Navigation from "../../components/Navigation";
 import "../../App.css";
-import Bar from "../../components/Bar";
+// import Bar from "../../components/Bar";
 import Footer from "../../components/Footer";
 import * as S from "../../styledComponents/StyledApp";
 import { useThemeContext } from "../ThemeContext/ThemeContext";
 
-export const MyPlaylist = ({ changeTrack }) => {
+export const MyPlaylist = () => {
   const { theme } = useThemeContext();
 
   return (
@@ -34,7 +34,7 @@ export const MyPlaylist = ({ changeTrack }) => {
             </div>
           </div> */}
         </S.Main>
-        {changeTrack && <Bar changeTrack={changeTrack} />}
+        {/* {changeTrack ? <Bar /> : null} */}
         <Footer />
       </S.Container>
     </S.Wrapper>

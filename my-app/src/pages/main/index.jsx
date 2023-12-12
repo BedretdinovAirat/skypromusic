@@ -7,10 +7,15 @@ import Bar from "../../components/Bar";
 import Footer from "../../components/Footer";
 import React from "react";
 import { useThemeContext } from "../ThemeContext/ThemeContext";
+import { useSelector } from "react-redux";
 
 export const Main = ({ user, logOut, tracks, setTracks, isLoading }) => {
-  const [changeTrack, setChangeTrack] = React.useState(null);
+  // const [changeTrack, setChangeTrack] = React.useState(null);
+  const changeTrack = useSelector((state) => state.tracks.changeTrack);
   const { theme } = useThemeContext();
+  React.useEffect(() => {
+    console.log(changeTrack);
+  }, [changeTrack]);
   return (
     <S.Wrapper>
       <S.Container theme={theme}>
@@ -18,14 +23,14 @@ export const Main = ({ user, logOut, tracks, setTracks, isLoading }) => {
           <Navigation user={user} logOut={logOut} />
           <CenterBlock
             isLoading={isLoading}
-            changeTrack={changeTrack}
-            setChangeTrack={setChangeTrack}
+            // changeTrack={changeTrack}
+            // setChangeTrack={setChangeTrack}
             tracks={tracks}
             setTracks={setTracks}
           />
           <MainSideBar user={user} logOut={logOut} />
         </S.Main>
-        {changeTrack && <Bar changeTrack={changeTrack} />}
+        {changeTrack ? <Bar /> : null}
         <Footer />
       </S.Container>
     </S.Wrapper>
