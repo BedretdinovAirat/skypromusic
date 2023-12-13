@@ -40,6 +40,8 @@ function CenterBlock({ tracks, isLoading }) {
           ) : (
             tracks.map((track) => (
               <Track
+                tracks={tracks}
+                track={track}
                 // track={track}
                 // name={track.name}
                 // author={track.author}

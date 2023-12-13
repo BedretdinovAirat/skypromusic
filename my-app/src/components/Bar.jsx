@@ -3,14 +3,22 @@ import * as S from "../styledComponents/StyledBar";
 import React from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
-// import { useDispatch } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import {
+  playTrack,
+  pauseTrack,
+  switchTrack,
+  backSwitchTrack,
+  changeIsShuffled,
+} from "../store/TracksSlice";
 export default function Bar() {
-  const changeTrack = useSelector((state) => state.tracks.changeTrack);
-  // const dispatch = useDispatch();
+  const changeTrack = useSelector((state) => state.track.changeTrack);
+  const $isPlaying = useSelector((state) => state.track.$isPlaying);
+  const isShuffled = useSelector((state) => state.track.isShuffled);
+  const dispatch = useDispatch();
 
   const audioRef = React.useRef(null);
-  const [isPlaying, setIsPlaying] = React.useState(false);
+  // const [$isPlaying, set$isPlaying] = React.useState(false);
   const [volume, setVolume] = React.useState(1);
   const [isLoop, setIsLoop] = React.useState(false);
 
@@ -40,9 +48,14 @@ export default function Bar() {
         setDuration(0);
       }
     };
+    const playBackTrack = () => {
+      dispatch(switchTrack());
+    };
     newVolume.addEventListener("timeupdate", changeTime);
+    newVolume.addEventListener("ended", playBackTrack);
     return () => {
       newVolume.removeEventListener("timeupdate", changeTime);
+      newVolume.removeEventListener("ended", playBackTrack);
     };
   }, []);
   const handleTimeChange = (e) => {
@@ -54,23 +67,22 @@ export default function Bar() {
     setIsLoop(true);
     console.log("работает!");
   };
-
   const handleStopLoop = () => {
     audioRef.current.loop = false;
     setIsLoop(false);
   };
   const handleStart = () => {
     audioRef.current.play();
-    setIsPlaying(true);
+    dispatch(playTrack());
     console.log(audioRef.current.play());
   };
 
   const handleStop = () => {
     audioRef.current.pause();
-    setIsPlaying(false);
+    dispatch(pauseTrack());
   };
 
-  const togglePlay = isPlaying ? handleStop : handleStart;
+  const togglePlay = $isPlaying ? handleStop : handleStart;
   const toggleLoop = isLoop ? handleStopLoop : handleStartLoop;
   React.useEffect(() => {
     if (changeTrack) {
@@ -80,13 +92,13 @@ export default function Bar() {
     }
   }, [changeTrack]);
   const handlePrevious = () => {
-    alert("Функция не реализована");
+    dispatch(backSwitchTrack());
   };
   const handleNext = () => {
-    alert("Функция не реализована");
+    dispatch(switchTrack());
   };
   const handleShuffle = () => {
-    alert("Функция не реализована");
+    dispatch(changeIsShuffled());
   };
   return (
     <>
@@ -116,7 +128,7 @@ export default function Bar() {
                   <S.PlayerPlaySVG onClick={togglePlay} alt="play">
                     <use
                       xlinkHref={
-                        isPlaying
+                        $isPlaying
                           ? "img/icon/sprite.svg#icon-pause"
                           : "img/icon/sprite.svg#icon-play"
                       }
@@ -140,9 +152,18 @@ export default function Bar() {
                   )}
                 </S.PlayerBTNRepeat>
                 <S.PlayerBTNShuffle>
-                  <S.PlayerShuffleSVG onClick={handleShuffle} alt="shuffle">
-                    <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
-                  </S.PlayerShuffleSVG>
+                  {isShuffled ? (
+                    <S.PlayerShuffleSVGActive
+                      onClick={handleShuffle}
+                      alt="shuffle"
+                    >
+                      <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
+                    </S.PlayerShuffleSVGActive>
+                  ) : (
+                    <S.PlayerShuffleSVG onClick={handleShuffle} alt="shuffle">
+                      <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
+                    </S.PlayerShuffleSVG>
+                  )}
                 </S.PlayerBTNShuffle>
               </S.PlayerControls>
               <S.PlayerTrackPlay>

@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 
 export const Main = ({ user, logOut, tracks, setTracks, isLoading }) => {
   // const [changeTrack, setChangeTrack] = React.useState(null);
-  const changeTrack = useSelector((state) => state.tracks.changeTrack);
+  const changeTrack = useSelector((state) => state.track.changeTrack);
   const { theme } = useThemeContext();
   React.useEffect(() => {
     console.log(changeTrack);

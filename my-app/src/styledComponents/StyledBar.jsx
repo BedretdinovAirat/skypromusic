@@ -203,6 +203,12 @@ export const PlayerShuffleSVG = styled.svg`
   fill: transparent;
   stroke: #696969;
 `;
+export const PlayerShuffleSVGActive = styled.svg`
+  width: 19px;
+  height: 12px;
+  fill: transparent;
+  stroke: #ffffff;
+`;
 export const PlayerTrackPlay = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
