@@ -50,6 +50,7 @@ function CenterBlock() {
                 // duration_in_seconds={track.duration_in_seconds}
                 // setChangeTrack={setChangeTrack}
                 key={track.id}
+                isFavoriteLike={false}
                 // track_file={track.track_file}
                 {...track}
               />

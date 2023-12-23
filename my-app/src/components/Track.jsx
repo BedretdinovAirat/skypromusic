@@ -6,7 +6,11 @@ import { useThemeContext } from "../pages/ThemeContext/ThemeContext";
 import { useDispatch } from "react-redux";
 import { playTracks } from "../store/TracksSlice";
 import { useSelector } from "react-redux";
-import { useAddMyTracksMutation, useAllTracksQuery } from "./redux/ApiMusic";
+import {
+  useAddMyTracksMutation,
+  useAllTracksQuery,
+  useDeleteMyTracksMutation,
+} from "./redux/ApiMusic";
 import { AuthContext } from "../store/AuthContext";
 function Track({
   track,
@@ -19,14 +23,22 @@ function Track({
   data,
   id,
   stared_user,
+  isFavoriteLike,
 }) {
   const changeTrack = useSelector((state) => state.track.changeTrack);
   const $isPlaying = useSelector((state) => state.track.$isPlaying);
   const dispatch = useDispatch();
   const { theme } = useThemeContext();
-  const [addMyTracks] = useAddMyTracksMutation();
+  const { user, logOut } = useContext(AuthContext);
+  const [addMyTracks, { error: likeError }] = useAddMyTracksMutation();
+  const [deleteMyTracks, { error: dislikeError }] = useDeleteMyTracksMutation();
   const { refetch } = useAllTracksQuery();
-  const { user } = useContext(AuthContext);
+  if (
+    (likeError && likeError.status === 401) ||
+    (dislikeError && dislikeError.status === 401)
+  ) {
+    logOut();
+  }
   const isLiked = useMemo(
     () => stared_user?.some((el) => el.id === user.id),
     [stared_user, user]
@@ -37,7 +49,12 @@ function Track({
     await addMyTracks({ token, id }).unwrap();
     refetch();
   };
-
+  const handleDeleteMyTracks = async (event) => {
+    event.stopPropagation();
+    const token = localStorage.getItem("access");
+    await deleteMyTracks({ token, id }).unwrap();
+    refetch();
+  };
   // React.useEffect(() => {
   //   setTimeout(() => {
   //     setIsLoading(false);
@@ -75,9 +92,12 @@ function Track({
           <S.TrackAlbumLink theme={theme}>{album}</S.TrackAlbumLink>
         </S.TrackAlbum>
         <S.TrackTime>
-          {isLiked ? (
+          {isLiked || isFavoriteLike ? (
             <S.TrackTimeSVG alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-like-active"></use>
+              <use
+                xlinkHref="img/icon/sprite.svg#icon-like-active"
+                onClick={handleDeleteMyTracks}
+              ></use>
             </S.TrackTimeSVG>
           ) : (
             <S.TrackTimeSVG alt="time">
