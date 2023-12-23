@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import * as S from "../../styledComponents/StyledAuth";
 import { useContext, useEffect, useState } from "react";
-import { login, register } from "../../api/Auth";
+import { getUserToken, login, register } from "../../api/Auth";
 import { AuthContext } from "../../store/AuthContext";
 import { useNavigate } from "react-router-dom";
 export default function AuthPage({ isLoginMode = false }) {
@@ -20,6 +20,9 @@ export default function AuthPage({ isLoginMode = false }) {
     try {
       const user = await login(email, password);
       loginUser(user);
+      const token = await getUserToken({ email, password });
+      localStorage.setItem("access", token.access.toString());
+      localStorage.setItem("refresh", token.refresh.toString());
       navigate("/");
       if (email === "" && password === "") {
         setError("Заполните почту и пароль");

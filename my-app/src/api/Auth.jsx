@@ -1,4 +1,5 @@
 // Апи регистрации и входа
+const token = "https://skypro-music-api.skyeng.tech/user/token/";
 export async function register({ email, password, username }) {
   const response = await fetch(
     "https://skypro-music-api.skyeng.tech/user/signup/",
@@ -65,8 +66,8 @@ export async function getToken(email, password) {
     {
       method: "POST",
       body: JSON.stringify({
-        email,
         password,
+        email,
       }),
       headers: {
         "content-type": "application/json",
@@ -75,3 +76,18 @@ export async function getToken(email, password) {
   );
   return response.json();
 }
+export const getUserToken =
+  async () =>
+  async ({ email, password }) => {
+    const response = await fetch(token, {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    return response.json();
+  };

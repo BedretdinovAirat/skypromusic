@@ -7,10 +7,11 @@ import React from "react";
 import { useThemeContext } from "../pages/ThemeContext/ThemeContext";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useAllTracksQuery } from "./redux/ApiMusic";
 
-function CenterBlock({ tracks, isLoading }) {
+function CenterBlock() {
   const { theme } = useThemeContext();
-
+  const { data = [], isLoading } = useAllTracksQuery();
   return (
     <S.MainCenterblock>
       <BlockSearch />
@@ -38,9 +39,9 @@ function CenterBlock({ tracks, isLoading }) {
               />
             </SkeletonTheme>
           ) : (
-            tracks.map((track) => (
+            data.map((track) => (
               <Track
-                tracks={tracks}
+                data={data}
                 track={track}
                 // track={track}
                 // name={track.name}

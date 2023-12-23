@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useMemo } from "react";
 // import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 // import "react-loading-skeleton/dist/skeleton.css";
 import * as S from "../styledComponents/StyledTrack";
@@ -6,6 +6,8 @@ import { useThemeContext } from "../pages/ThemeContext/ThemeContext";
 import { useDispatch } from "react-redux";
 import { playTracks } from "../store/TracksSlice";
 import { useSelector } from "react-redux";
+import { useAddMyTracksMutation, useAllTracksQuery } from "./redux/ApiMusic";
+import { AuthContext } from "../store/AuthContext";
 function Track({
   track,
   setTracks,
@@ -14,21 +16,38 @@ function Track({
   album,
   duration_in_seconds,
   track_file,
-  tracks,
+  data,
+  id,
+  stared_user,
 }) {
   const changeTrack = useSelector((state) => state.track.changeTrack);
   const $isPlaying = useSelector((state) => state.track.$isPlaying);
   const dispatch = useDispatch();
   const { theme } = useThemeContext();
+  const [addMyTracks] = useAddMyTracksMutation();
+  const { refetch } = useAllTracksQuery();
+  const { user } = useContext(AuthContext);
+  const isLiked = useMemo(
+    () => stared_user?.some((el) => el.id === user.id),
+    [stared_user, user]
+  );
+  const handleAddMyTracks = async (event) => {
+    event.stopPropagation();
+    const token = localStorage.getItem("access");
+    await addMyTracks({ token, id }).unwrap();
+    refetch();
+  };
+
   // React.useEffect(() => {
   //   setTimeout(() => {
   //     setIsLoading(false);
   //   }, 5000);
   // }, []);
+
   return (
     <S.PlaylistItem
       onClick={() =>
-        dispatch(playTracks({ name, album, author, track_file, tracks }))
+        dispatch(playTracks({ name, album, author, track_file, data }))
       }
     >
       <S.PlaylistTrack key={track.id}>
@@ -56,13 +75,18 @@ function Track({
           <S.TrackAlbumLink theme={theme}>{album}</S.TrackAlbumLink>
         </S.TrackAlbum>
         <S.TrackTime>
-          <S.TrackTimeSVG alt="time">
-            {/* <use
-              xlinkHref={`img/icon/sprite.svg#icon-${
-                track.isLike ? "like" : "dislike"
-              }`}
-            /> */}
-          </S.TrackTimeSVG>
+          {isLiked ? (
+            <S.TrackTimeSVG alt="time">
+              <use xlinkHref="img/icon/sprite.svg#icon-like-active"></use>
+            </S.TrackTimeSVG>
+          ) : (
+            <S.TrackTimeSVG alt="time">
+              <use
+                xlinkHref="img/icon/sprite.svg#icon-like"
+                onClick={handleAddMyTracks}
+              ></use>
+            </S.TrackTimeSVG>
+          )}
           <S.TrackTimeText>{duration_in_seconds}</S.TrackTimeText>
         </S.TrackTime>
       </S.PlaylistTrack>

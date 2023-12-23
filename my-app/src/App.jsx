@@ -5,7 +5,7 @@ import "./Center.css";
 import "./Footer.css";
 import React from "react";
 import { AppRoutes } from "./routes";
-import { getTracks } from "./api/Api";
+// import { getTracks } from "./api/Api";
 function App() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [tracks, setTracks] = React.useState([
@@ -90,13 +90,13 @@ function App() {
       time: "4:44",
     },
   ]);
-  React.useEffect(() => {
-    getTracks().then((track) => {
-      console.log("1", track);
-      setTracks(track);
-      setIsLoading(false);
-    });
-  }, []);
+  // React.useEffect(() => {
+  //   getTracks().then((track) => {
+  //     console.log("1", track);
+  //     setTracks(track);
+  //     setIsLoading(false);
+  //   });
+  // }, []);
   return (
     <AppRoutes isLoading={isLoading} tracks={tracks} setTracks={setTracks} />
     // <S.Wrapper>
