@@ -8,6 +8,10 @@ export const apiMusic = createApi({
     baseUrl: tracksURL,
   }),
   endpoints: (build) => ({
+    getCategory: build.query({
+      query: ({ id }) => `/catalog/selection/${id}`,
+      providesTags: ["track"]
+    }),
     allTracks: build.query({ query: () => "/catalog/track/all/" }),
     getFavoriteTracks: build.query({
       query: ({ token }) => ({
@@ -48,4 +52,5 @@ export const {
   useAddMyTracksMutation,
   useGetFavoriteTracksQuery,
   useDeleteMyTracksMutation,
+  useGetCategoryQuery,
 } = apiMusic;
