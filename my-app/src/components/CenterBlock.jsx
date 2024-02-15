@@ -25,7 +25,11 @@ function CenterBlock() {
   React.useEffect(() => {
     dispatch(putFilteredTracks(data || []));
     dispatch(filterTracks({ fitlerName: "search", filterValue: search }));
-  }, [data, dispatch, search]);
+    // console.log(data);
+    // console.log(initialTracks);
+    console.log(data);
+    // console.log(initialTracks);
+  }, [dispatch, data, isLoading, search]);
   return (
     <S.MainCenterblock>
       <BlockSearch />

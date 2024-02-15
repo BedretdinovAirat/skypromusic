@@ -18,15 +18,15 @@ export const tracksSlice = createSlice({
       if (
         !state.baseDataTracks.author.length > 0 &&
         !state.baseDataTracks.genre.length > 0 &&
-        !state.baseDataTracks.search &&
-        !state.baseDataTracks.years
+        !state.baseDataTracks.years &&
+        !state.baseDataTracks.search
       ) {
         state.isFiltered = false;
         return;
       }
       if (
-        action.payload.filterName !== "search" &&
-        action.payload.filterName !== "years"
+        action.payload.filterName !== "years" &&
+        action.payload.filterName !== "search"
       ) {
         if (
           state.baseDataTracks[action.payload.filterName].includes(

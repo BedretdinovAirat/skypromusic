@@ -10,9 +10,12 @@ export const apiMusic = createApi({
   endpoints: (build) => ({
     getCategory: build.query({
       query: ({ id }) => `/catalog/selection/${id}`,
-      providesTags: ["track"]
+      providesTags: ["track"],
     }),
-    allTracks: build.query({ query: () => "/catalog/track/all/" }),
+    allTracks: build.query({
+      query: () => "/catalog/track/all/",
+      providesTags: ["track"],
+    }),
     getFavoriteTracks: build.query({
       query: ({ token }) => ({
         url: "/catalog/track/favorite/all/",
