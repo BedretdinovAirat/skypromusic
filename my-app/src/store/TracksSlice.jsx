@@ -15,21 +15,21 @@ export const tracksSlice = createSlice({
   },
   reducers: {
     filterTracks: (state, action) => {
-      if (
-        !state.baseDataTracks.author.length > 0 &&
-        !state.baseDataTracks.genre.length > 0 &&
-        !state.baseDataTracks.years &&
-        !state.baseDataTracks.search
-      ) {
-        state.isFiltered = false;
-        return;
-      }
+      // if (
+      //   !state.baseDataTracks.author.length > 0 &&
+      //   !state.baseDataTracks.genre.length > 0 &&
+      //   !state.baseDataTracks.years &&
+      //   !state.baseDataTracks.search
+      // ) {
+      //   state.isFiltered = false;
+      //   return;
+      // }
       if (
         action.payload.filterName !== "years" &&
         action.payload.filterName !== "search"
       ) {
         if (
-          state.baseDataTracks[action.payload.filterName].includes(
+          state.baseDataTracks[action.payload.filterName]?.includes(
             action.payload.filterValue
           )
         ) {
@@ -38,7 +38,7 @@ export const tracksSlice = createSlice({
               (element) => element !== action.payload.filterValue
             );
         } else {
-          state.baseDataTracks[action.payload.filterName].push(
+          state.baseDataTracks[action.payload.filterName]?.push(
             action.payload.filterValue
           );
         }
