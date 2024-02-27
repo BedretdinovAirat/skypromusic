@@ -15,15 +15,6 @@ export const tracksSlice = createSlice({
   },
   reducers: {
     filterTracks: (state, action) => {
-      // if (
-      //   !state.baseDataTracks.author.length > 0 &&
-      //   !state.baseDataTracks.genre.length > 0 &&
-      //   !state.baseDataTracks.years &&
-      //   !state.baseDataTracks.search
-      // ) {
-      //   state.isFiltered = false;
-      //   return;
-      // }
       if (
         action.payload.filterName !== "years" &&
         action.payload.filterName !== "search"
@@ -56,6 +47,35 @@ export const tracksSlice = createSlice({
             );
           })
           .flat();
+      }
+      if (state.baseDataTracks.genre.length > 0) {
+        state.filteredTracks = state.baseDataTracks.genre
+          .map((elemGenre) => {
+            return state.filteredTracks.filter(
+              (element) => element.genre === elemGenre
+            );
+          })
+          .flat();
+      }
+      if (state.baseDataTracks.years.length > 0) {
+        switch (state.baseDataTracks.years) {
+          case "Сначала новые":
+            const newList = [...state.filteredTracks];
+            newList.sort(
+              (a, b) => new Date(b.release_date) - new Date(a.release_date)
+            );
+            state.filteredTracks = newList;
+            break;
+          case "Сначала старые":
+            const oldList = [...state.filteredTracks];
+            oldList.sort(
+              (a, b) => new Date(a.release_date) - new Date(b.release_date)
+            );
+            state.filteredTracks = oldList;
+            break;
+          default:
+            break;
+        }
       }
       if (state.baseDataTracks.search) {
         state.filteredTracks = state.filteredTracks.filter((track) => {

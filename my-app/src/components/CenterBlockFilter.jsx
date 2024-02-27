@@ -4,12 +4,14 @@ import * as S from "../styledComponents/StyledCenterBlockFilter";
 import { useAllTracksQuery } from "./redux/ApiMusic";
 import { useDispatch } from "react-redux";
 import { filterTracks } from "../store/TracksSlice";
-
+import { useSelector } from "react-redux";
+const releaseDates = ["Сначала старые", "Сначала новые", "По умолчанию"];
 function CenterBlockFilter() {
+  const baseDataTracks = useSelector((state) => state.track.baseDataTracks);
   const dispatch = useDispatch();
   const { data = [] } = useAllTracksQuery();
   const [genre, setGenre] = React.useState([]);
-  const [year, setYear] = React.useState([]);
+  // const [year, setYear] = React.useState([]);
   const [openAuthor, setOpenAuthor] = React.useState(false);
   const [openYear, setOpenYear] = React.useState(false);
   const [openGenre, setOpenGenre] = React.useState(false);
@@ -39,13 +41,13 @@ function CenterBlockFilter() {
       });
       setGenre(Array.from(newGenre));
     }
-    if (data.length > 0) {
-      const newYear = new Set();
-      data.forEach((element) => {
-        newYear.add(element.release_date);
-      });
-      setYear(Array.from(newYear));
-    }
+    // if (data.length > 0) {
+    //   const newYear = new Set();
+    //   data.forEach((element) => {
+    //     newYear.add(element.release_date);
+    //   });
+    //   setYear(Array.from(newYear));
+    // }
     console.log(data);
   }, [data]);
 
@@ -60,6 +62,7 @@ function CenterBlockFilter() {
               {data.map((item) => {
                 return (
                   <S.MenuItem
+                    $active={baseDataTracks.author.includes(item.author)}
                     onClick={() =>
                       handleFiltered({
                         filterName: "author",
@@ -95,8 +98,21 @@ function CenterBlockFilter() {
           году выпуска
           <nav>
             <S.MenuFilter onClick={(event) => event.stopPropagation()}>
-              {year.map((item) => {
-                return <S.MenuItem key={item}>{item}</S.MenuItem>;
+              {releaseDates.map((item) => {
+                return (
+                  <S.MenuItem
+                    $active={baseDataTracks.years === item}
+                    onClick={() =>
+                      handleFiltered({
+                        filterName: "years",
+                        filterValue: item,
+                      })
+                    }
+                    key={item.id}
+                  >
+                    {item}
+                  </S.MenuItem>
+                );
               })}
               {/* <S.MenuItem> По умолчанию</S.MenuItem> */}
               {/* <S.MenuItem> Сначала новые</S.MenuItem> */}
@@ -113,7 +129,20 @@ function CenterBlockFilter() {
           <nav>
             <S.MenuFilter onClick={(event) => event.stopPropagation()}>
               {genre.map((item) => {
-                return <S.MenuItem key={item}>{item}</S.MenuItem>;
+                return (
+                  <S.MenuItem
+                    $active={baseDataTracks.genre.includes(item)}
+                    onClick={() =>
+                      handleFiltered({
+                        filterName: "genre",
+                        filterValue: item,
+                      })
+                    }
+                    key={item}
+                  >
+                    {item}
+                  </S.MenuItem>
+                );
               })}
               {/* <S.MenuItem> Рок</S.MenuItem>
               <S.MenuItem> Хип-хоп</S.MenuItem>
