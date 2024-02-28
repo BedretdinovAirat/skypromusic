@@ -1,6 +1,6 @@
 import "../style.css";
 import * as S from "../styledComponents/StyledBar";
-import React from "react";
+import React, { useContext } from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -11,12 +11,17 @@ import {
   backSwitchTrack,
   changeIsShuffled,
 } from "../store/TracksSlice";
+import { AuthContext } from "../store/AuthContext";
 export default function Bar() {
+  const { user } = useContext(AuthContext);
   const changeTrack = useSelector((state) => state.track.changeTrack);
   const $isPlaying = useSelector((state) => state.track.$isPlaying);
   const isShuffled = useSelector((state) => state.track.isShuffled);
   const dispatch = useDispatch();
 
+  const isLiked = changeTrack.stared_user?.find(
+    (userElem) => userElem.id === user.id
+  );
   const audioRef = React.useRef(null);
   // const [$isPlaying, set$isPlaying] = React.useState(false);
   const [volume, setVolume] = React.useState(1);
@@ -188,7 +193,12 @@ export default function Bar() {
                 <S.TrackPlayLikeDis>
                   <S.TrackPlayLike className="_btn-icon">
                     <S.TrackPlayLikeSVG alt="like">
-                      <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                      {/* <use xlinkHref="img/icon/sprite.svg#icon-like"></use> */}
+                      {isLiked ? (
+                        <use xlinkHref="img/icon/sprite.svg#active-like"></use>
+                      ) : (
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                      )}
                     </S.TrackPlayLikeSVG>
                   </S.TrackPlayLike>
                   <S.TrackPlayDis className="_btn-icon">
