@@ -65,4 +65,5 @@ export const ContentPlaylist = styled.div`
   -ms-flex-direction: column;
   flex-direction: column;
   overflow-y: auto;
+  // background-color: #383838;
 `;

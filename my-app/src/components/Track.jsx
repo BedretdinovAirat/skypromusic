@@ -64,7 +64,9 @@ function Track({
   return (
     <S.PlaylistItem
       onClick={() =>
-        dispatch(playTracks({ name, album, author, track_file, data }))
+        dispatch(
+          playTracks({ name, album, author, track_file, data, stared_user })
+        )
       }
     >
       <S.PlaylistTrack key={track.id}>

@@ -19,10 +19,10 @@ export const Categories = () => {
       <S.Container>
         <S.Main>
           <Navigation />
-          <S.Container>{data?.name}</S.Container>
+          {/* <S.Container>{data?.name}</S.Container> */}
           <Style.MainCenterblock>
             <Style.CenterBlockH2 theme={theme}>
-              Мой плейлист
+              {data?.name}
             </Style.CenterBlockH2>
             <Style.CenterblockContent>
               <Style.ContentTitle>
