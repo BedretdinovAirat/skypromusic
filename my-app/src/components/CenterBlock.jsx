@@ -42,7 +42,7 @@ function CenterBlock() {
           <S.PlaylistTitleCol>АЛЬБОМ</S.PlaylistTitleCol>
           <S.PlaylistTitleCol>
             <S.PlaylistTitleSVG alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
+              <use xlinkHref="/img/icon/sprite.svg#icon-watch"></use>
             </S.PlaylistTitleSVG>
           </S.PlaylistTitleCol>
         </S.ContentTitle>

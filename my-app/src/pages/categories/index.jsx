@@ -58,7 +58,7 @@ export const Categories = () => {
                       // setChangeTrack={setChangeTrack}
                       key={track.id}
                       // track_file={track.track_file}
-                      isFavoriteLike={true}
+                      // isFavoriteLike={true}
                       {...track}
                     />
                   ))

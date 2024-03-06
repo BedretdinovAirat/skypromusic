@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { apiMusic } from "../components/redux/ApiMusic";
 
 export const tracksSlice = createSlice({
   name: "tracks",
@@ -11,9 +12,18 @@ export const tracksSlice = createSlice({
     initialTracks: [],
     filteredTracks: [],
     isFiltered: false,
-    baseDataTracks: { author: [], genre: [], search: "", years: "" },
+    baseDataTracks: {
+      author: [],
+      genre: [],
+      search: "",
+      years: "По умолчанию",
+    },
   },
   reducers: {
+    changeCurrentTrack: (state, action) => {
+      const { isLiked } = action.payload;
+      state.changeTrack.isLiked = isLiked;
+    },
     filterTracks: (state, action) => {
       if (
         action.payload.filterName !== "years" &&
@@ -74,6 +84,7 @@ export const tracksSlice = createSlice({
             state.filteredTracks = oldList;
             break;
           default:
+            state.filteredTracks.sort((a, b) => a.id - b.id);
             break;
         }
       }
@@ -130,6 +141,30 @@ export const tracksSlice = createSlice({
       state.isShuffled = !state.isShuffled;
     },
   },
+  // место где можно ловить асинхронные функции, без RTK QUERY, метод create async thunk;
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      apiMusic.endpoints.addMyTracks.matchFulfilled,
+      (state, action) => {
+        console.log(action);
+        console.log(action.meta.arg.originalArgs);
+        const { id } = action.meta.arg.originalArgs;
+        if (id === state.changeTrack?.id) {
+          state.changeTrack.isLiked = true;
+        }
+      }
+    );
+    builder.addMatcher(
+      apiMusic.endpoints.deleteMyTracks.matchFulfilled,
+      (state, action) => {
+        console.log(action);
+        const { id } = action.meta.arg.originalArgs;
+        if (id === state.changeTrack?.id) {
+          state.changeTrack.isLiked = false;
+        }
+      }
+    );
+  },
 });
 export const {
   playTracks,
@@ -140,5 +175,6 @@ export const {
   changeIsShuffled,
   filterTracks,
   putFilteredTracks,
+  changeCurrentTrack,
 } = tracksSlice.actions;
 export default tracksSlice.reducer;
