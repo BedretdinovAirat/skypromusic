@@ -3,6 +3,7 @@ import * as S from "../../styledComponents/StyledApp";
 // import Bar from "../../components/Bar";
 import Footer from "../../components/Footer";
 import "../../App.css";
+import { Link } from "react-router-dom";
 
 export const NotFound = () => {
   return (
@@ -20,11 +21,13 @@ export const NotFound = () => {
                 alt="sad"
               ></img>
               <p className="notFound__text">
-                Возможно, она была удалена или перенесена на другой адреc
+                Возможно, страница была удалена или перенесена на другой адреc
               </p>
-              <button className="notFound__button">
-                <use className="notFound__link">Вернуться на главную</use>;
-              </button>
+              <Link to="/">
+                <button className="notFound__button">
+                  <use className="notFound__link">Вернуться на главную</use>;
+                </button>
+              </Link>
             </div>
           </div>
         </S.Main>

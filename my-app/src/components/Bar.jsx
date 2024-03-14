@@ -63,11 +63,20 @@ export default function Bar() {
     const playBackTrack = () => {
       dispatch(switchTrack());
     };
+    const handleCanPlayThroughTrack = () => {
+      newVolume.play();
+      dispatch(playTrack());
+    };
     newVolume.addEventListener("timeupdate", changeTime);
     newVolume.addEventListener("ended", playBackTrack);
+    newVolume.addEventListener("canplaythrough", handleCanPlayThroughTrack);
     return () => {
       newVolume.removeEventListener("timeupdate", changeTime);
       newVolume.removeEventListener("ended", playBackTrack);
+      newVolume.removeEventListener(
+        "canplaythrough",
+        handleCanPlayThroughTrack
+      );
     };
   }, [dispatch]);
   const handleTimeChange = (e) => {

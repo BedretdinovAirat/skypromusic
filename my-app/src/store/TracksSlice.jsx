@@ -119,22 +119,22 @@ export const tracksSlice = createSlice({
       const allTracks = state.isShuffled
         ? state.shuffledTrackList.sort(() => Math.random() - 0.5)
         : state.trackList;
-      const trackId = allTracks.findIndex((track) => {
+      const trackId = allTracks.items.findIndex((track) => {
         return track.id === state.changeTrack.id;
       });
-      if (allTracks[trackId + 1]) {
-        state.changeTrack = allTracks[trackId + 1];
+      if (allTracks.items[trackId + 1]) {
+        state.changeTrack = allTracks.items[trackId + 1];
       }
     },
     backSwitchTrack: (state) => {
       const allTracks = state.isShuffled
         ? state.shuffledTrackList.sort(() => Math.random() - 0.5)
         : state.trackList;
-      const trackId = allTracks.findIndex((track) => {
+      const trackId = allTracks.items.findIndex((track) => {
         return track.id === state.changeTrack.id;
       });
-      if (allTracks[trackId - 1]) {
-        state.changeTrack = allTracks[trackId - 1];
+      if (allTracks.items[trackId - 1]) {
+        state.changeTrack = allTracks.items[trackId - 1];
       }
     },
     changeIsShuffled: (state) => {
