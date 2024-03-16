@@ -48,7 +48,7 @@ export const Categories = () => {
                 ) : (
                   data?.items?.map((track) => (
                     <Track
-                      data={data}
+                      data={data.items}
                       track={track}
                       // track={track}
                       // name={track.name}
