@@ -9,6 +9,7 @@ export const MenuItem = styled.li`
   margin-bottom: 16px;
 `;
 export const MenuLink = styled(NavLink)`
+  // color: white;
   color: ${(props) => props.theme.color};
   font-weight: 400;
   font-size: 16px;

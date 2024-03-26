@@ -8,10 +8,28 @@ import { useThemeContext } from "../pages/ThemeContext/ThemeContext";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useAllTracksQuery } from "./redux/ApiMusic";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { filterTracks, putFilteredTracks } from "../store/TracksSlice";
 
 function CenterBlock() {
+  const dispatch = useDispatch();
   const { theme } = useThemeContext();
-  const { data = [], isLoading } = useAllTracksQuery();
+  const { data, isLoading } = useAllTracksQuery();
+  const initialTracks = useSelector((state) => state.track.initialTracks);
+  const filteredTracks = useSelector((state) => state.track.filteredTracks);
+  const isFiltered = useSelector((state) => state.track.isFiltered);
+  const search = useSelector((state) => state.track.search);
+  let filterData = isFiltered ? filteredTracks : initialTracks;
+
+  React.useEffect(() => {
+    dispatch(putFilteredTracks(data || []));
+    dispatch(filterTracks({ fitlerName: "search", filterValue: search }));
+    // console.log(data);
+    // console.log(initialTracks);
+    console.log(data);
+    // console.log(initialTracks);
+  }, [dispatch, data, isLoading, search]);
   return (
     <S.MainCenterblock>
       <BlockSearch />
@@ -24,7 +42,7 @@ function CenterBlock() {
           <S.PlaylistTitleCol>АЛЬБОМ</S.PlaylistTitleCol>
           <S.PlaylistTitleCol>
             <S.PlaylistTitleSVG alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
+              <use xlinkHref="/img/icon/sprite.svg#icon-watch"></use>
             </S.PlaylistTitleSVG>
           </S.PlaylistTitleCol>
         </S.ContentTitle>
@@ -39,7 +57,7 @@ function CenterBlock() {
               />
             </SkeletonTheme>
           ) : (
-            data.map((track) => (
+            filterData.map((track) => (
               <Track
                 data={data}
                 track={track}

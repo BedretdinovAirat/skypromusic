@@ -57,6 +57,7 @@ export const PlaylistTitleSVG = styled.svg`
 `;
 
 export const ContentPlaylist = styled.div`
+  height: 500px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -65,4 +66,36 @@ export const ContentPlaylist = styled.div`
   -ms-flex-direction: column;
   flex-direction: column;
   overflow-y: auto;
+  // background-color: #383838;
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow-y: auto;
+  padding-right: 10px;
+
+  &::-webkit-scrollbar {
+    width: 7px;
+    height: 0px;
+    background-color: black;
+    border-radius: 10px;
+    border: 1px solid #000000;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: black;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    scrollbar-width: auto;
+  }
+  &::-webkit-scrollbar-thumb {
+    width: 12px;
+    background-color: black;
+    border-radius: 10px;
+    border: 1px solid #000000;
+  }
 `;

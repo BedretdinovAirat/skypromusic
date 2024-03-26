@@ -1,6 +1,6 @@
 import "../style.css";
 import * as S from "../styledComponents/StyledBar";
-import React from "react";
+import React, { useCallback, useContext } from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -10,13 +10,25 @@ import {
   switchTrack,
   backSwitchTrack,
   changeIsShuffled,
+  changeCurrentTrack,
 } from "../store/TracksSlice";
+import { AuthContext } from "../store/AuthContext";
+import {
+  useAddMyTracksMutation,
+  useDeleteMyTracksMutation,
+} from "./redux/ApiMusic";
 export default function Bar() {
+  const [setLike] = useAddMyTracksMutation();
+  const [setDislike] = useDeleteMyTracksMutation();
+  // const { user } = useContext(AuthContext);
   const changeTrack = useSelector((state) => state.track.changeTrack);
   const $isPlaying = useSelector((state) => state.track.$isPlaying);
   const isShuffled = useSelector((state) => state.track.isShuffled);
   const dispatch = useDispatch();
 
+  // const isLiked = changeTrack.stared_user?.find(
+  //   (userElem) => userElem.id === user.id
+  // );
   const audioRef = React.useRef(null);
   // const [$isPlaying, set$isPlaying] = React.useState(false);
   const [volume, setVolume] = React.useState(1);
@@ -51,13 +63,22 @@ export default function Bar() {
     const playBackTrack = () => {
       dispatch(switchTrack());
     };
+    const handleCanPlayThroughTrack = () => {
+      newVolume.play();
+      dispatch(playTrack());
+    };
     newVolume.addEventListener("timeupdate", changeTime);
     newVolume.addEventListener("ended", playBackTrack);
+    newVolume.addEventListener("canplaythrough", handleCanPlayThroughTrack);
     return () => {
       newVolume.removeEventListener("timeupdate", changeTime);
       newVolume.removeEventListener("ended", playBackTrack);
+      newVolume.removeEventListener(
+        "canplaythrough",
+        handleCanPlayThroughTrack
+      );
     };
-  }, []);
+  }, [dispatch]);
   const handleTimeChange = (e) => {
     const time = e.target.value;
     audioRef.current.currentTime = time;
@@ -71,16 +92,16 @@ export default function Bar() {
     audioRef.current.loop = false;
     setIsLoop(false);
   };
-  const handleStart = () => {
+  const handleStart = useCallback(() => {
     audioRef.current.play();
     dispatch(playTrack());
     console.log(audioRef.current.play());
-  };
+  }, [dispatch]);
 
-  const handleStop = () => {
+  const handleStop = useCallback(() => {
     audioRef.current.pause();
     dispatch(pauseTrack());
-  };
+  }, [dispatch]);
 
   const togglePlay = $isPlaying ? handleStop : handleStart;
   const toggleLoop = isLoop ? handleStopLoop : handleStartLoop;
@@ -90,7 +111,7 @@ export default function Bar() {
     } else {
       handleStop();
     }
-  }, [changeTrack]);
+  }, [changeTrack, handleStart, handleStop]);
   const handlePrevious = () => {
     dispatch(backSwitchTrack());
   };
@@ -99,6 +120,13 @@ export default function Bar() {
   };
   const handleShuffle = () => {
     dispatch(changeIsShuffled());
+  };
+  const handleLike = () => {
+    const token = localStorage.getItem("access");
+    changeTrack.isLiked
+      ? setDislike({ id: changeTrack.id, token })
+      : setLike({ id: changeTrack.id, token });
+    dispatch(changeCurrentTrack({ isLiked: !changeTrack.isLiked }));
   };
   return (
     <>
@@ -121,7 +149,7 @@ export default function Bar() {
               <S.PlayerControls>
                 <S.PlayerBTNPrev>
                   <S.PlayerPrevSVG onClick={handlePrevious} alt="prev">
-                    <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
+                    <use xlinkHref="/img/icon/sprite.svg#icon-prev"></use>
                   </S.PlayerPrevSVG>
                 </S.PlayerBTNPrev>
                 <S.PlayerBTNPlay>
@@ -129,25 +157,25 @@ export default function Bar() {
                     <use
                       xlinkHref={
                         $isPlaying
-                          ? "img/icon/sprite.svg#icon-pause"
-                          : "img/icon/sprite.svg#icon-play"
+                          ? "/img/icon/sprite.svg#icon-pause"
+                          : "/img/icon/sprite.svg#icon-play"
                       }
                     ></use>
                   </S.PlayerPlaySVG>
                 </S.PlayerBTNPlay>
                 <S.PlayerBTNNext>
                   <S.PlayerNextSVG onClick={handleNext} alt="next">
-                    <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
+                    <use xlinkHref="/img/icon/sprite.svg#icon-next"></use>
                   </S.PlayerNextSVG>
                 </S.PlayerBTNNext>
                 <S.PlayerBTNRepeat>
                   {isLoop ? (
                     <S.PlayerRepeatSVGActive onClick={toggleLoop} alt="repeat">
-                      <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                      <use xlinkHref="/img/icon/sprite.svg#icon-repeat"></use>
                     </S.PlayerRepeatSVGActive>
                   ) : (
                     <S.PlayerRepeatSVG onClick={toggleLoop} alt="repeat">
-                      <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                      <use xlinkHref="/img/icon/sprite.svg#icon-repeat"></use>
                     </S.PlayerRepeatSVG>
                   )}
                 </S.PlayerBTNRepeat>
@@ -157,11 +185,11 @@ export default function Bar() {
                       onClick={handleShuffle}
                       alt="shuffle"
                     >
-                      <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
+                      <use xlinkHref="/img/icon/sprite.svg#icon-shuffle"></use>
                     </S.PlayerShuffleSVGActive>
                   ) : (
                     <S.PlayerShuffleSVG onClick={handleShuffle} alt="shuffle">
-                      <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
+                      <use xlinkHref="/img/icon/sprite.svg#icon-shuffle"></use>
                     </S.PlayerShuffleSVG>
                   )}
                 </S.PlayerBTNShuffle>
@@ -170,7 +198,7 @@ export default function Bar() {
                 <S.TrackPlayContain>
                   <S.TrackPlayImage>
                     <S.TrackPlaySVG alt="music">
-                      <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                      <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
                     </S.TrackPlaySVG>
                   </S.TrackPlayImage>
                   <S.TrackPlayAuthor>
@@ -185,17 +213,22 @@ export default function Bar() {
                   </S.TrackPlayAlbum>
                 </S.TrackPlayContain>
 
-                <S.TrackPlayLikeDis>
+                <S.TrackPlayLikeDis onClick={handleLike}>
                   <S.TrackPlayLike className="_btn-icon">
                     <S.TrackPlayLikeSVG alt="like">
-                      <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                      {/* <use xlinkHref="img/icon/sprite.svg#icon-like"></use> */}
+                      {changeTrack.isLiked ? (
+                        <use xlinkHref="/img/icon/sprite.svg#active-like"></use>
+                      ) : (
+                        <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
+                      )}
                     </S.TrackPlayLikeSVG>
                   </S.TrackPlayLike>
-                  <S.TrackPlayDis className="_btn-icon">
+                  {/* <S.TrackPlayDis className="_btn-icon">
                     <S.TrackPlayDisSVG alt="dislike">
                       <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
                     </S.TrackPlayDisSVG>
-                  </S.TrackPlayDis>
+                  </S.TrackPlayDis> */}
                 </S.TrackPlayLikeDis>
               </S.PlayerTrackPlay>
             </S.BarPlayer>
@@ -203,7 +236,7 @@ export default function Bar() {
               <S.VolumeContent>
                 <S.VolumeImage>
                   <S.VolumeSVG alt="volume">
-                    <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
+                    <use xlinkHref="/img/icon/sprite.svg#icon-volume"></use>
                   </S.VolumeSVG>
                 </S.VolumeImage>
                 <S.VolumeProgress>

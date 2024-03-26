@@ -24,6 +24,7 @@ function Track({
   id,
   stared_user,
   isFavoriteLike,
+  isLiked,
 }) {
   const changeTrack = useSelector((state) => state.track.changeTrack);
   const $isPlaying = useSelector((state) => state.track.$isPlaying);
@@ -39,10 +40,10 @@ function Track({
   ) {
     logOut();
   }
-  const isLiked = useMemo(
-    () => stared_user?.some((el) => el.id === user.id),
-    [stared_user, user]
-  );
+  // const isLiked = useMemo(
+  //   () => stared_user?.some((el) => el.id === user.id),
+  //   [stared_user, user]
+  // );
   const handleAddMyTracks = async (event) => {
     event.stopPropagation();
     const token = localStorage.getItem("access");
@@ -64,7 +65,18 @@ function Track({
   return (
     <S.PlaylistItem
       onClick={() =>
-        dispatch(playTracks({ name, album, author, track_file, data }))
+        dispatch(
+          playTracks({
+            name,
+            album,
+            author,
+            track_file,
+            data,
+            stared_user,
+            id,
+            isLiked,
+          })
+        )
       }
     >
       <S.PlaylistTrack key={track.id}>
@@ -74,7 +86,7 @@ function Track({
               <S.trackPlayingDot $isPlaying={$isPlaying}></S.trackPlayingDot>
             ) : (
               <S.TrackTitleSVG alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
               </S.TrackTitleSVG>
             )}
           </S.TrackTitleImage>
@@ -95,14 +107,14 @@ function Track({
           {isLiked || isFavoriteLike ? (
             <S.TrackTimeSVG alt="time">
               <use
-                xlinkHref="img/icon/sprite.svg#icon-like-active"
+                xlinkHref="/img/icon/sprite.svg#icon-like-active"
                 onClick={handleDeleteMyTracks}
               ></use>
             </S.TrackTimeSVG>
           ) : (
             <S.TrackTimeSVG alt="time">
               <use
-                xlinkHref="img/icon/sprite.svg#icon-like"
+                xlinkHref="/img/icon/sprite.svg#icon-like"
                 onClick={handleAddMyTracks}
               ></use>
             </S.TrackTimeSVG>

@@ -50,8 +50,7 @@ export const MenuItem = styled.li`
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #ffffff;
-  color: white;
+  color: ${(props) => (props.$active ? "purple" : "#ffffff")};
   padding: 5px 0;
   margin-bottom: 16px;
 `;
